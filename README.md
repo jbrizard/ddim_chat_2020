@@ -10,7 +10,15 @@
 * __Daffy__ : il accourt quand on l'appelle...
 
 ## Roadmap ##
-* 
+* Jules & Léo : Emojis
+* Léo & Anayse : Quizz
+* Benjamin & Gabin : Gifs
+* Louis G & Alexandre : Partage de fichier
+* Louise & Quentin : Wikipedia
+* Romain & Maxime : Blagues
+* Amanda & Flavien : Jukebox
+* Louis G : Meteo
+* Enzo & Hugo : Mise en forme texte
 
 ## Idées de développement ##
 * Améliorer l'UI/UX
