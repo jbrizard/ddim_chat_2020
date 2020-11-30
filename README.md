@@ -1,6 +1,6 @@
 # Chat DDIM : un chat collaboratif fonctionnant avec NodeJS !
 *Version stable : 0.1*  
-*Contributeurs : groupes.txt*
+*Contributeurs : AUTHORS*
 
 ## Fonctionnalités ##
 * Connexion avec saisie du pseudo
