@@ -3,3 +3,16 @@
   margin-bottom: 2%;
   display: inline;
 }
+
+input[type='button'].emoji{
+  display: inline-block;
+  background-color:red;
+}
+
+input[type='button']#emoji-input.active{
+  background:blue;
+}
+
+#emoji-input.active, .emojis.active{
+  display: inline-block;
+}

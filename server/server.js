@@ -51,6 +51,8 @@ io.sockets.on('connection', function(socket)
 		// Transmet le message au module Donald (on lui passe aussi l'objet "io" pour qu'il puisse envoyer des messages)
 		donald.handleDonald(io, message);
 
+		console.log(message);
+
 	});
 });
 
