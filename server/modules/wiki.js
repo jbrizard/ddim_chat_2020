@@ -18,13 +18,13 @@ function handleWiki(io, message)
 	message = message.toLowerCase();
 	
 	// Est-ce qu'il contient une référence à wiki ?
-	if (message.includes('wiki') && message.includes('wikipedia'))
+	if (message.includes('wiki') || message.includes('wikipedia'))
 	{
 		// Si oui, envoie la réponse de wiki...
 		io.sockets.emit('new_message',
 		{
 			name:'Wiki',
-			message:'<span class="wiki">Ca arrive, patience...</span>'
+			message:'Ca arrive, patience...'
 		});
 	}
 }
