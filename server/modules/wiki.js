@@ -14,17 +14,17 @@ module.exports =  {
  */
 function handleWiki(io, message)
 {
-	/*// Passe le message en minuscules (recherche insensible à la casse)
+	// Passe le message en minuscules (recherche insensible à la casse)
 	message = message.toLowerCase();
 	
 	// Est-ce qu'il contient une référence à Daffy ?
-	if (message.includes('daffy'))
+	if (message.includes('wiki'))
 	{
 		// Si oui, envoie la réponse de Daffy...
 		io.sockets.emit('new_message',
 		{
-			name:'Daffy!!',
-			message:'<span class="daffy">Coin Coin !</span>'
+			name:'Wiki',
+			message:'<span class="wiki">ça arrive, patiente</span>'
 		});
-	}*/
+	}
 }
