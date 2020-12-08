@@ -18,6 +18,25 @@ $('#message-input').keyup(function(evt)
 		sendMessage();
 });
 
+
+//Action quand on clique sur le bouton "😀"
+var emoji_click = false;
+$('#emoji-input').click(function(){
+	if(!emoji_click){
+		var facesList = ['😀', '😄', '😅', '😍', '😜', '😞', '😟', '😭', '😱', '😡'];
+		for (let i = 0; i < facesList.length; i++) {
+			var btn = '<input type="button" value="'+facesList[i]+'">';
+			$('.emojis').append(btn);
+		}
+		emoji_click=true;
+	} else {
+		$( ".emojis" ).empty();
+		emoji_click=false;
+	}
+	//socket.emit('emoji');
+});
+
+
 /**
  * Envoi d'un message au serveur
  */
