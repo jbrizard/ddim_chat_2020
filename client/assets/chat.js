@@ -25,16 +25,25 @@ $('#emoji-input').click(function(){
 	if(!emoji_click){
 		var facesList = ['😀', '😄', '😅', '😍', '😜', '😞', '😟', '😭', '😱', '😡'];
 		for (let i = 0; i < facesList.length; i++) {
-			var btn = '<input type="button" value="'+facesList[i]+'">';
+			var btn = '<input type="button" class="emoji" onClick="sendEmoji(event)" value="'+facesList[i]+'">';
 			$('.emojis').append(btn);
 		}
+		
 		emoji_click=true;
 	} else {
 		$( ".emojis" ).empty();
 		emoji_click=false;
 	}
-	//socket.emit('emoji');
 });
+
+function sendEmoji(event)
+{
+	var value =  event.target.defaultValue;
+	//socket.emit('emoji', value);
+	var input = $('#message-input');
+	var text= input.val();
+	input.val(text+value);
+}
 
 
 /**
