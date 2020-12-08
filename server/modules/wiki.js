@@ -20,11 +20,12 @@ function handleWiki(io, message)
 	// Est-ce qu'il contient une référence à wiki ?
 	if (message.includes('wiki') || message.includes('wikipedia'))
 	{
+		let words = message.split(' ');
 		// Si oui, envoie la réponse de wiki...
 		io.sockets.emit('new_message',
 		{
 			name:'Wiki',
-			message:'Ca arrive, patience...'
+			message:'<a target="_blank" rel="noopener noreferrer" href="https://fr.wikipedia.org/wiki/' + words[1] +'">Ma page sur ' + words[1] +'</a>'
 		});
 	}
 }
