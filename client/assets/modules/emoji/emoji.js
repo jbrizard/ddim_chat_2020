@@ -1,31 +1,57 @@
-//Action quand on clique sur le bouton "😀"
-var emojiClick = false;
-$('#emoji-input').click(function(){
-	if(!emojiClick){
-		var facesList = ['😀', '😄', '😅', '😍', '😜', '😞', '😟', '😭', '😱', '😡'];
-		var animalsList = ['🐺', '🐱', '🐭', '🐹', '🐸', '🐯', '🐨', '🐻', '🐒', '🐴'];
-		var plantsList = ['💐', '🌸', '🌷', '🍀', '🌹', '🌻', '🌺', '🍁', '🍃', '🍂'];
+/*
+ * Nom : Emoji
+ * Description : ce fichier permet de gérer l'affichage des émojis et l'insertion d'un émoji
+ * Auteur(s) : Jules Cannet et Léo Piazza
+ */
 
-		for (let i = 0; i < facesList.length; i++) {
-			var btn = '<input type="button" class="emoji" onClick="sendEmoji(event)" value="'+facesList[i]+'">';
-			$('.emojis').append(btn);
-		}
-		$('#emoji-input').addClass('active');
-		$('.emojis').addClass('active');
+//Actions quand on clique un des trois boutons (emojis)
+var emojiClick = [false, false, false];
+$('#emoji-input-faces').click(function(){
+	var facesList = ['😀', '😄', '😅', '😍', '😜', '😞', '😟', '😭', '😱', '😡'];
+	generateEmojis('#emoji-input-faces', facesList, 1);
 
-		emojiClick=true;
-	} else {
-		$( ".emojis" ).empty();
-		$('#emoji-input').removeClass('active');
-		$('.emojis').removeClass('active');
-		emojiClick=false;
-	}
 });
 
+$('#emoji-input-animals').click(function(){
+	var animalsList = ['🐺', '🐱', '🐭', '🐹', '🐸', '🐯', '🐨', '🐻', '🐒', '🐴'];
+	generateEmojis('#emoji-input-animals', animalsList, 2);
+
+});
+
+$('#emoji-input-plants').click(function(){
+	var plantsList = ['💐', '🌸', '🌷', '🍀', '🌹', '🌻', '🌺', '🍁', '🍃', '🍂'];
+	generateEmojis('#emoji-input-plants', plantsList, 3);
+});
+
+
+//cette fonction génère/supprime des boutons émojis en fonction des paramètres
+function generateEmojis(parent, list, i){
+	var bool = emojiClick[i];
+	if(!bool){
+		$( ".emojis" ).empty();
+		emojiClick = [false, false, false];
+
+		for (let i = 0; i < list.length; i++) {
+			var btn = '<input type="button" class="emoji" onClick="sendEmoji(event)" value="'+list[i]+'">';
+			$('.emojis').append(btn);
+		}
+		$(parent).addClass('active');
+		$('.emojis').addClass('active');
+
+		bool=true;
+	} else {
+		$( ".emojis" ).empty();
+		$(btn).removeClass('active');
+		$('.emojis').removeClass('active');
+		bool=false;
+	}
+	emojiClick[i] = bool;
+}
+
+//Permet d'écrire l'émoji sur le message en cours
 function sendEmoji(event)
 {
 	var value =  event.target.defaultValue;
-	//socket.emit('emoji', value);
 	var input = $('#message-input');
 	var text= input.val();
 	input.val(text+value);

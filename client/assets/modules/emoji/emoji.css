@@ -1,17 +1,17 @@
-#emoji-input, .emoji{
-  margin-top:-10px;
-  margin-bottom: 2%;
-  display: inline;
-}
+/* Module Emoji */
 
 input[type='button'].emoji{
   display: inline-block;
-  background-color:red;
+  background-color:transparent;
+  border:none;
 }
 
-input[type='button']#emoji-input.active{
+/*input[type='button']#emoji-input-faces.active,
+input[type='button']#emoji-input-animals.active,
+input[type='button']#emoji-input-plants.active
+{
   background:blue;
-}
+}*/
 
 #emoji-input.active, .emojis.active{
   display: inline-block;
