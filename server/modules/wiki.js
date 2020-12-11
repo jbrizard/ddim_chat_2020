@@ -13,7 +13,6 @@ module.exports =  {
 }
 
 const wiki = require('wikijs').default;
-
 /**
  * Lorsqu'on appelle wiki, il répond en revoyant une page wikipedia
  */
@@ -53,17 +52,27 @@ function handleWiki(io, message)
 
 function searchWiki(keyword, io)
 {
-	wiki({
+	let pageWikipedia = wiki({
 		apiUrl: 'https://fr.wikipedia.org/w/api.php'
 	})
-	.page(keyword)
+	.page(keyword);
+
+	pageWikipedia
 	.then(page => page.summary())
 	.then(function(summary)
 	{
-		sendMessage(
-			'<a target="_blank" rel="noopener noreferrer" href="https://fr.wikipedia.org/wiki/' + keyword +'">Voici ce que je sais sur ' + keyword +'.</a>'
-			+ '<p>' + summary + '</p>'
-		, io);
+		pageWikipedia
+		.then(page => page.info())
+		.then(function(info)
+		{
+			console.log(info);
+			let titre = info.titre;
+			sendMessage(
+				'<a target="_blank" rel="noopener noreferrer" href="https://fr.wikipedia.org/wiki/' + keyword +'">Voici ce que je sais sur ' + keyword +'.</a>'
+				+ '<h3>' + titre + '</h3>'
+				+ '<p>' + summary + '</p>'
+			, io);
+		});
 	});
 }
 
