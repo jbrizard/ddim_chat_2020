@@ -22,9 +22,6 @@ function handleWiki(io, message)
 	// Passe le message en minuscules (recherche insensible à la casse)
 	message = message.toLowerCase();
 
-	// On crée la variable dans laquelle on va mettre la réponse du bot
-	let rep;
-	
 	// Est-ce qu'il contient une référence à wiki ?
 	if (message.includes('wiki'))
 	{
@@ -36,35 +33,46 @@ function handleWiki(io, message)
 			// Si le mot à chercher est aléatoire ou random on affiche une page aléatoir plus plus une page sur l'aléatoire sinon on cherche le mot
 			if (words[1] == "random" || words[1] == "al&#233;atoire" || words[1] == "aleatoire")
 			{
-				rep = 'Un peu de curiosité ne fait pas de mal, voici une <a target="_blank" rel="noopener noreferrer" href="https://fr.wikipedia.org/wiki/Sp%C3%A9cial:Page_au_hasard">page aléatoire.</a><br>';
-				rep += 'Si vous voulez en savoir plus sur ' + words[1] +', c\'est par <a target="_blank" rel="noopener noreferrer" href="https://fr.wikipedia.org/wiki/' + words[1] +'">ici.</a>';
+				sendMessage('Un peu de curiosité ne fait pas de mal, voici une <a target="_blank" rel="noopener noreferrer" href="https://fr.wikipedia.org/wiki/Sp%C3%A9cial:Page_au_hasard">page aléatoire.</a><br>'
+						  + 'Si vous voulez en savoir plus sur ' + words[1] +', c\'est par <a target="_blank" rel="noopener noreferrer" href="https://fr.wikipedia.org/wiki/' + words[1] +'">ici.</a>'
+				, io);
 			}
 			else
 			{
-				
-				wiki({
-					apiUrl: 'https://fr.wikipedia.org/w/api.php'
-				}).page(words[1])
-					.then(page => page.summary())
-					.then(function(summary){
-						rep = '<a target="_blank" rel="noopener noreferrer" href="https://fr.wikipedia.org/wiki/' + words[1] +'">Voici ce que je sais sur ' + words[1] +'.</a>';
-						rep += '<p>' + summary + '</p>';
-					})
-				
-				
-				
+				searchWiki(words[1], io);
 			}
 		}
 		else
 		{
-			rep = 'Bonjour ! Je suis le Wikibot, tapez "wiki" puis le mot de votre choix, et je vous donnerai un lien vers ce que vous cherchez.';
+			sendMessage(
+				'Bonjour ! Je suis le Wikibot, tapez "wiki" puis le mot de votre choix, et je vous donnerai un lien vers ce que vous cherchez.'
+			, io);
 		}
 	}
+}
 
+function searchWiki(keyword, io)
+{
+	wiki({
+		apiUrl: 'https://fr.wikipedia.org/w/api.php'
+	})
+	.page(keyword)
+	.then(page => page.summary())
+	.then(function(summary)
+	{
+		sendMessage(
+			'<a target="_blank" rel="noopener noreferrer" href="https://fr.wikipedia.org/wiki/' + keyword +'">Voici ce que je sais sur ' + keyword +'.</a>'
+			+ '<p>' + summary + '</p>'
+		, io);
+	});
+}
+
+function sendMessage(message, io)
+{
 	// On envoie la réponse de wiki
 	io.sockets.emit('new_message',
 	{
 		name:'Wiki',
-		message: rep
+		message: message
 	});
 }
