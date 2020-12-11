@@ -4,7 +4,7 @@
  * Auteur(s) : Jules Cannet et Léo Piazza
  */
 
-//Actions quand on clique un des trois boutons (emojis)
+// Liste les émojis de type visage
 var emojiClick = [false, false, false, false, false];
 $('#emoji-input-faces').click(function(){
 	var facesList = ['😀', '😄', '😅', '😍', '😜', '😞', '😟', '😭', '😱', '😡'];
@@ -12,11 +12,13 @@ $('#emoji-input-faces').click(function(){
 
 });
 
+// Liste les émojis de type gesture
 $('#emoji-input-gestures').click(function(){
 	var gesturesList = ['👍', '👎', '👋', '🤚', '🖐', '🖖', '👌', '🤏', '✌️', '🤟'];
 	generateEmojis('#emoji-input-gestures', gesturesList, 2);
 });
 
+// Liste les émojis de type coeur
 $('#emoji-input-love').click(function(){
 	var loveList = ['❤️', '💔', '😘', '🥰', '💓', '💖','💋', '💎','💙', '🖤'];
 	generateEmojis('#emoji-input-love', loveList, 3);
@@ -32,7 +34,6 @@ $('#emoji-input-plants').click(function(){
 	var plantsList = ['💐', '🌸', '🌷', '🍀', '🌹', '🌻', '🌺', '🍁', '🍃', '🍂'];
 	generateEmojis('#emoji-input-plants', plantsList, 5);
 });
-
 
 
 //cette fonction génère/supprime des boutons émojis en fonction des paramètres
