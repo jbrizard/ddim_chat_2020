@@ -29,8 +29,8 @@ function handleWiki(io, message)
 		{
 			if (words[1] == "random" || words[1] == "al&#233;atoire" || words[1] == "aleatoire")
 			{
-				rep = '<a target="_blank" rel="noopener noreferrer" href="https://fr.wikipedia.org/wiki/Sp%C3%A9cial:Page_au_hasard">Un peu de curiosité ne fait pas de mal, voici une page aléatoire.</a><br>';
-				rep += '<a target="_blank" rel="noopener noreferrer" href="https://fr.wikipedia.org/wiki/' + words[1] +'">Si vous voulez en savoir plus sur l\'' + words[1] +', c\'est par ici.</a>';
+				rep = 'Un peu de curiosité ne fait pas de mal, voici une <a target="_blank" rel="noopener noreferrer" href="https://fr.wikipedia.org/wiki/Sp%C3%A9cial:Page_au_hasard">page aléatoire.</a><br>';
+				rep += 'Si vous voulez en savoir plus sur ' + words[1] +', c\'est par <a target="_blank" rel="noopener noreferrer" href="https://fr.wikipedia.org/wiki/' + words[1] +'">ici.</a>';
 			}
 			else
 			{
