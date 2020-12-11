@@ -1,0 +1,24 @@
+/* Module Upload */
+#files{
+color: red;
+}
+
+#upload-files{
+    text-align: left;
+    
+}
+
+#button-upload{
+    border-radius: 20px;
+    background-color: rgb(27, 26, 26);
+    color: white;
+    font-size: 15px;
+    border-color: transparent;
+    height: 25px;
+    width: 25px;
+}
+
+#button-upload:hover{
+    background-color: rgb(48, 44, 44);
+    cursor: pointer;
+}

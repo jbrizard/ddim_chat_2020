@@ -5,9 +5,11 @@ var ioLib = require('socket.io');	// WebSocket
 var ent = require('ent');		// Librairie pour encoder/décoder du HTML
 var path = require('path');		// Gestion des chemins d'accès aux fichiers	
 var fs = require('fs');			// Accès au système de fichier
+var bodyParser = require('body-parser'); 
 
 // Chargement des modules perso
 var daffy = require('./modules/daffy.js');
+var upload = require('./modules/upload.js');
 
 // Initialisation du serveur HTTP
 var app = express();
@@ -46,6 +48,16 @@ io.sockets.on('connection', function(socket)
 		
 		// Transmet le message au module Daffy (on lui passe aussi l'objet "io" pour qu'il puisse envoyer des messages)
 		daffy.handleDaffy(io, message);
+
+		//transmet le fichier au module Upload
+		
+	});
+
+	//Réception d'un fichier
+	socket.on('file', function(file)
+	{
+		// Transmet le fichier au module Upload (on lui passe aussi l'objet "io" et "socket" pour qu'il puisse envoyer des messages avec le nom de l'utilisateur)
+		upload.handleUpload(file, io, socket);
 	});
 });
 

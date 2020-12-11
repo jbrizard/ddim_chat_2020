@@ -49,3 +49,6 @@ function receiveMessage(data)
 	)
 	.scrollTop(function(){ return this.scrollHeight });  // scrolle en bas du conteneur
 }
+
+
+
