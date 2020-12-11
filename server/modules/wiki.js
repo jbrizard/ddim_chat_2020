@@ -4,10 +4,15 @@
  * Auteurs : Louise Bertin & Quentin Pionnier
  */
 
+const { table } = require('console');
+const { resolve } = require('path');
+
 // Définit les méthodes "publiques" (utilisation à l'extérieur du module)
 module.exports =  {
 	handleWiki: handleWiki // permet d'appeler cette méthode dans server.js -> wiki.handleWiki(...)
 }
+
+const wiki = require('wikijs').default;
 
 /**
  * Lorsqu'on appelle wiki, il répond en revoyant une page wikipedia
@@ -36,9 +41,19 @@ function handleWiki(io, message)
 			}
 			else
 			{
-				rep = '<a target="_blank" rel="noopener noreferrer" href="https://fr.wikipedia.org/wiki/' + words[1] +'">Voici ce que je sais sur ' + words[1] +'.</a>';
+				
+				wiki({
+					apiUrl: 'https://fr.wikipedia.org/w/api.php'
+				}).page(words[1])
+					.then(page => page.summary())
+					.then(function(summary){
+						rep = '<a target="_blank" rel="noopener noreferrer" href="https://fr.wikipedia.org/wiki/' + words[1] +'">Voici ce que je sais sur ' + words[1] +'.</a>';
+						rep += '<p>' + summary + '</p>';
+					})
+				
+				
+				
 			}
-			
 		}
 		else
 		{
