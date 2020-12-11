@@ -10,7 +10,7 @@ module.exports =  {
 }
 
 /**
- * Lorsqu'on appelle wiki, il répond...
+ * Lorsqu'on appelle wiki, il répond en revoyant une page wikipedia
  */
 function handleWiki(io, message)
 {
@@ -25,8 +25,10 @@ function handleWiki(io, message)
 	{
 		let words = message.split(' ', 2);
 
+		// Vérifie qu'un mot à rechercher est bien présent
 		if (words[1] != undefined) 
 		{
+			// Si le mot à chercher est aléatoire ou random on affiche une page aléatoir plus plus une page sur l'aléatoire sinon on cherche le mot
 			if (words[1] == "random" || words[1] == "al&#233;atoire" || words[1] == "aleatoire")
 			{
 				rep = 'Un peu de curiosité ne fait pas de mal, voici une <a target="_blank" rel="noopener noreferrer" href="https://fr.wikipedia.org/wiki/Sp%C3%A9cial:Page_au_hasard">page aléatoire.</a><br>';
@@ -44,7 +46,7 @@ function handleWiki(io, message)
 		}
 	}
 
-	// On envoie la réponse de wiki...
+	// On envoie la réponse de wiki
 	io.sockets.emit('new_message',
 	{
 		name:'Wiki',
