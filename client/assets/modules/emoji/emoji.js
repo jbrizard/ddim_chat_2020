@@ -23,13 +23,14 @@ $('#emoji-input-gestures').click(function()
 	generateEmojis('#emoji-input-gestures', gesturesList, 2);
 });
 
-// Liste les émojis de type coeur
+// Liste les émojis de type amour
 $('#emoji-input-love').click(function()
 {
 	var loveList = ['❤️','❤','🧡','💛','💚','💙','💜','🤎','🖤','🤍','💔','❣','💕','💞','💓','💗','💖','💘','💝'];
 	generateEmojis('#emoji-input-love', loveList, 3);
 });
 
+// Liste les émojis de type animal
 $('#emoji-input-animals').click(function()
 {
 	var animalsList = ['🐶','🐱','🐭','🐹','🐰','🐻','🧸','🐼','🐨','🐯','🦁','🐮','🐷','🐸','🐵','🙈','🙉','🙊','🐔','🐤','🐺','🦊','🦝','🐗','🐴','🦓','🦒','🦄','🦋','🐞'];
@@ -37,6 +38,7 @@ $('#emoji-input-animals').click(function()
 
 });
 
+// Liste les émojis de type plante
 $('#emoji-input-plants').click(function()
 {
 	var plantsList = ['🌵','🌲','🌴','🍀','🍂','🍁','🌾','🌺','🌻','🌹','🌷','🥀','🌼','🌸','💐','🍄','🌰'];
