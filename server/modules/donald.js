@@ -16,8 +16,6 @@ var discussionEngaged = false;
  */
 function onNewMessage(io, message)
 {
-	console.log(message);
-	
 	if (message.toLowerCase().includes('hey donald'))
 	{
 		sendMessage(io, 'Hey, tu m\'as parlé ?');
