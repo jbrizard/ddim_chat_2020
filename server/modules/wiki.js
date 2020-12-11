@@ -16,12 +16,14 @@ function handleWiki(io, message)
 {
 	// Passe le message en minuscules (recherche insensible à la casse)
 	message = message.toLowerCase();
+
+	// On crée la variable dans laquelle on va mettre la réponse du bot
+	let rep;
 	
 	// Est-ce qu'il contient une référence à wiki ?
 	if (message.includes('wiki'))
 	{
 		let words = message.split(' ', 2);
-		let rep;
 
 		if (words[1] != undefined) 
 		{
@@ -40,12 +42,12 @@ function handleWiki(io, message)
 		{
 			rep = 'Bonjour ! Je suis le Wikibot, tapez "wiki" puis le mot de votre choix, et je vous donnerai un lien vers ce que vous cherchez.';
 		}
-
-		// On envoie la réponse de wiki...
-		io.sockets.emit('new_message',
-		{
-			name:'Wiki',
-			message: rep
-		});
 	}
+
+	// On envoie la réponse de wiki...
+	io.sockets.emit('new_message',
+	{
+		name:'Wiki',
+		message: rep
+	});
 }
