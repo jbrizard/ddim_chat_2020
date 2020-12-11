@@ -26,9 +26,21 @@ function displayQuestion(data){
 	$('#chat #messages').append(
 		'<div class="message question">'
 			+ data.tab[data.nRound].question
+		+ '</div>'
+		 + '<div class="message reponse">'
+			+ "A. " + data.tab[data.nRound].choix[0]
 		 + '</div>'
 		 + '<div class="message reponse">'
-			+ data.tab[data.nRound].choix
+			+ "B. " + data.tab[data.nRound].choix[1]
+		 + '</div>'
+		 + '<div class="message reponse">'
+			+ "C. " + data.tab[data.nRound].choix[2]
+		 + '</div>'
+		 + '<div class="message reponse">'
+			+ "D. " + data.tab[data.nRound].choix[3]
+		 + '</div>'
+		 + '<div class="message reponse">'
+			+ "E. " + data.tab[data.nRound].choix[4]
 	     + '</div>'
 	)
 	.scrollTop(function(){ return this.scrollHeight });  // scrolle en bas du conteneur

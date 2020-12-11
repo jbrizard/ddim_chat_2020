@@ -30,7 +30,7 @@ function handleQuizz(io, message, name)
             io.sockets.emit('quizzStart', 
                 {
 
-                    message:name+ " a lancé le quizz ! Vous avez" + timerTime + " secondes pour taper '!JoinQuizz' afin de participer "
+                    message:name+ " a lancé le quizz ! Vous avez " + timerTime + " secondes pour taper '!JoinQuizz' afin de participer "
                 }
             );
         }
