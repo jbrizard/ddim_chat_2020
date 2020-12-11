@@ -8,6 +8,8 @@ var fs = require('fs');			// Accès au système de fichier
 
 // Chargement des modules perso
 var daffy = require('./modules/daffy.js');
+var meteo = require('./modules/meteo.js');
+
 
 // Initialisation du serveur HTTP
 var app = express();
@@ -46,6 +48,7 @@ io.sockets.on('connection', function(socket)
 		
 		// Transmet le message au module Daffy (on lui passe aussi l'objet "io" pour qu'il puisse envoyer des messages)
 		daffy.handleDaffy(io, message);
+		meteo.handleMeteo(io, message);
 	});
 });
 
