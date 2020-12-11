@@ -14,35 +14,27 @@ module.exports =  {
  */
 function handleEmoji(io, message)
 {	
-    console.log(message);
-    if(message.includes(':)'))
-    {
+    if(message.includes(':)')) 
         message = message.replace(':)', '&#128522;');
-    }
-    else if(message.includes(':('))
-    {
-        message = message.replace(':(', '&#128543;');
-    } 
-    else if(message.includes(':D'))
-    {
+
+    if(message.includes(':('))
+        message = message.replace(':(', '&#128543;'); 
+
+    if(message.includes(':D'))
         message = message.replace(':D', '&#128513;');
-    }
-    else if(message.includes(';('))
-    {
+
+    if(message.includes(';('))
         message = message.replace(';(', '&#128557;');
-    }
-    else if(message.includes(';)'))
-    {
+
+    if(message.includes(';)'))
         message = message.replace(';)', '&#128521;');
-    }
-    else if(message.includes(':/'))
-    {
+
+    if(message.includes(':/'))
         message = message.replace(':/', '&#128533;');
-    }
-    else if(message.includes(':o'))
-    {
+
+    if(message.includes(':o'))
         message = message.replace(':o', '&#128558;');
-    }
+
     return message;
 }
 

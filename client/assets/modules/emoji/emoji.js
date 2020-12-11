@@ -6,55 +6,69 @@
 
 // Liste les émojis de type visage
 var emojiClick = [false, false, false, false, false];
-$('#emoji-input-faces').click(function(){
-	var facesList = ['😀', '😄', '😅', '😍', '😜', '😞', '😟', '😭', '😱', '😡'];
+$('#emoji-input-faces').click(function()
+{
+	var facesList = ['😀','😃','😄','😁','😆','😅','😂','🤣','😇','😉','😊','🙂',
+	'🙃','😋','😌','😗','😙','😚','🤪','😜','😝','😛','🤑','😎','🤓','🧐','🤠','🥳','🤗',
+	'😏','😶','😐','😑','😒','🙄','🤨',	'🤔','🤫','🤭','🤥','😳','😞','😟','😠','😡',
+	'🤬','😔','😕','🙁','😬','🥺','😣','😖','😫','😩','🥱','😤','😮','😱','😨','😰','😯',
+	'😦','😧','😢','😥','😪','🤤','😓','😭'];
 	generateEmojis('#emoji-input-faces', facesList, 1);
-
 });
 
 // Liste les émojis de type gesture
-$('#emoji-input-gestures').click(function(){
-	var gesturesList = ['👍', '👎', '👋', '🤚', '🖐', '🖖', '👌', '🤏', '✌️', '🤟'];
+$('#emoji-input-gestures').click(function()
+{
+	var gesturesList = ['👍','👎','👊','✊','🤛','🤜','🤞','✌','🤘','🤟','👌','🤏','👈','👉','👆','👇','☝','✋','🤚','🖐','🖖','👋','🤙','💪','🖕','✍','🦵','🦶','👐','🤲','🙌','👏','🙏','🤝'];
 	generateEmojis('#emoji-input-gestures', gesturesList, 2);
 });
 
 // Liste les émojis de type coeur
-$('#emoji-input-love').click(function(){
-	var loveList = ['❤️', '💔', '😘', '🥰', '💓', '💖','💋', '💎','💙', '🖤'];
+$('#emoji-input-love').click(function()
+{
+	var loveList = ['❤️','❤','🧡','💛','💚','💙','💜','🤎','🖤','🤍','💔','❣','💕','💞','💓','💗','💖','💘','💝'];
 	generateEmojis('#emoji-input-love', loveList, 3);
 });
 
-$('#emoji-input-animals').click(function(){
-	var animalsList = ['🐺', '🐱', '🐭', '🐹', '🐸', '🐯', '🐨', '🐻', '🐒', '🐴'];
+$('#emoji-input-animals').click(function()
+{
+	var animalsList = ['🐶','🐱','🐭','🐹','🐰','🐻','🧸','🐼','🐨','🐯','🦁','🐮','🐷','🐸','🐵','🙈','🙉','🙊','🐔','🐤','🐺','🦊','🦝','🐗','🐴','🦓','🦒','🦄','🦋','🐞'];
 	generateEmojis('#emoji-input-animals', animalsList, 4);
 
 });
 
-$('#emoji-input-plants').click(function(){
-	var plantsList = ['💐', '🌸', '🌷', '🍀', '🌹', '🌻', '🌺', '🍁', '🍃', '🍂'];
+$('#emoji-input-plants').click(function()
+{
+	var plantsList = ['🌵','🌲','🌴','🍀','🍂','🍁','🌾','🌺','🌻','🌹','🌷','🥀','🌼','🌸','💐','🍄','🌰'];
 	generateEmojis('#emoji-input-plants', plantsList, 5);
 });
 
-
 //cette fonction génère/supprime des boutons émojis en fonction des paramètres
-function generateEmojis(parent, list, i){
+function generateEmojis(parent, list, i)
+{
 	var bool = emojiClick[i];
-	if(!bool){
-		$( ".emojis" ).empty();
+	if(!bool)
+	{
+		$( ".emojis-inside" ).empty();
 		emojiClick = [false, false, false, false, false];
 
-		for (let i = 0; i < list.length; i++) {
+		for (let i = 0; i < list.length; i++) 
+		{
 			var btn = '<input type="button" class="emoji" onClick="sendEmoji(event)" value="'+list[i]+'">';
-			$('.emojis').append(btn);
+			$('.emojis-inside').append(btn);
 		}
 		$(parent).addClass('active');
 		$('.emojis').addClass('active');
+		$('.emojis-inside').addClass('active');
 
 		bool=true;
-	} else {
-		$( ".emojis" ).empty();
+	} 
+	else 
+	{
+		$( ".emojis-inside" ).empty();
 		$(btn).removeClass('active');
 		$('.emojis').removeClass('active');
+		$('.emojis-inside').removeClass('active');
 		bool=false;
 	}
 	emojiClick[i] = bool;
@@ -67,4 +81,9 @@ function sendEmoji(event)
 	var input = $('#message-input');
 	var text= input.val();
 	input.val(text+value);
+	$( ".emojis-inside" ).empty();
+	emojiClick = [false, false, false, false, false];
+	$('.emojis').removeClass('active');
+	$('.emojis-inside').removeClass('active');
+
 }
