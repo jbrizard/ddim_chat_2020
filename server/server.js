@@ -10,6 +10,7 @@ var bodyParser = require('body-parser');
 // Chargement des modules perso
 var daffy = require('./modules/daffy.js');
 var upload = require('./modules/upload.js');
+var twitch = require('./modules/twitch.js');
 
 // Initialisation du serveur HTTP
 var app = express();
@@ -49,7 +50,8 @@ io.sockets.on('connection', function(socket)
 		// Transmet le message au module Daffy (on lui passe aussi l'objet "io" pour qu'il puisse envoyer des messages)
 		daffy.handleDaffy(io, message);
 
-		//transmet le fichier au module Upload
+		
+		twitch.handleTwitch(io, message, socket);
 		
 	});
 
