@@ -1,0 +1,42 @@
+/* Module Upload */
+#files{
+color: red;
+}
+
+#upload-files{
+    text-align: left;
+    background-color: transparent;
+    border-radius: 10px 0px 0px 10px;
+    border: 2px solid #888;
+    border-right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3px;
+}
+
+#button-upload{
+    border-radius: 100%;
+    background-color: rgb(71, 67, 67);
+    color: white;
+    font-size: 16px;
+    border-color: transparent;
+    height: 25px;
+    width: 25px;
+    margin-left: 2px;
+    text-align: center;
+}
+
+#button-upload:hover{
+    background-color: rgb(94, 93, 93);
+    cursor: pointer;
+}
+
+.toolbar{
+    display:flex;
+}
+
+input#message-input{
+    border-radius: 0;
+    border-left: 0;
+}

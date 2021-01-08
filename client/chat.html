@@ -14,6 +14,7 @@
 		<link rel="stylesheet" href="/modules/donald/donald.css" />
 		<link rel="stylesheet" href="/modules/barrelroll/barrelroll.css" />
 		<link rel="stylesheet" href="/modules/emoji/emoji.css">
+		<link rel="stylesheet" href="/modules/upload/upload.css" />
 	</head>
 	
 	<body>
@@ -36,18 +37,30 @@
 				</div>
 			</div>
 			
-			<input type="text" id="message-input" />
-			
-			<input type="button" id="send-message" value="Envoyer" />
+			<div class="toolbar">
+				<div id="upload-files">
+					<input type="file" id="upload" name="upload" style="display:none" />
+					<input type="text" id="selectedfile" style="display:none" />
+					<input type="button" value="+" id="button-upload" onclick="getFile()" />
+				</div>
+				<input type="text" id="message-input"/>
+				<input type="button" id="send-message" value="Envoyer" />
+			</div>
 		</div>
 		
-		<ul id="features">
-			<li>Emojis : exprimez vos sentiments !</li>
-			<li>Bot BG : demandez lui une blague, il se fera un plaisir de vous faire rire...</li>
+		<div id="features">
+			<h2>Fonctionnailtés</h2>
+			<ul>
+				<li><strong>Emojis :</strong> exprimez vos sentiments, déclarez votre flamme...</li>
+				<li><strong>Bot BG :</strong> demandez lui une blague, il se fera un plaisir de vous faire "rire"...</li>
+				<li><strong>Giphy :</strong> demandez un "gif" !</li>
+				<li><strong>Upload :</strong> partagez vos photos de vacances... ou vos supports de cours</li>
+			</ul>
 		</div>
 		
 		<script type="text/javascript" src="chat.js"></script>
 		<script type="text/javascript" src="/modules/barrelroll/barrelroll.js"></script>
 		<script type="text/javascript" src="/modules/emoji/emoji.js"></script>
+		<script type="text/javascript" src="modules/upload/upload.js"></script>
 	</body>
 </html>

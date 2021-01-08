@@ -2,7 +2,7 @@
 var socket = io.connect('http://localhost:8080');
 
 // Demande un pseudo et envoie l'info au serveur
-var name = prompt('Quel est votre pseudo ?');
+var name = prompt('Quel est votre pseudo ?', 'Anonyme ' + new Date().getTime().toString().substr(-5));
 socket.emit('user_enter', name);
 
 // Gestion des événements diffusés par le serveur
@@ -49,3 +49,6 @@ function receiveMessage(data)
 	)
 	.scrollTop(function(){ return this.scrollHeight });  // scrolle en bas du conteneur
 }
+
+
+
