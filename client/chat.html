@@ -1,4 +1,5 @@
 ﻿<!DOCTYPE html>
+<!-- fichier créé par Léo et Jules -->
 <html>
 	<head>
 		<meta charset="UTF-8">
@@ -11,6 +12,7 @@
 		<link rel="stylesheet" href="/modules/daffy/daffy.css" />
 		<link rel="stylesheet" href="/modules/donald/donald.css" />
 		<link rel="stylesheet" href="/modules/barrelroll/barrelroll.css" />
+		<link rel="stylesheet" href="/modules/emoji/emoji.css">
 	</head>
 	
 	<body>
@@ -20,7 +22,20 @@
 			<div id="messages">
 				
 			</div>
-				
+
+			<div class="emojis-input">
+				<input type="button"  id="emoji-input-faces" value="😀" />
+				<input type="button"  id="emoji-input-gestures" value="👍" />
+				<input type="button"  id="emoji-input-love" value="❤️" />
+				<input type="button"  id="emoji-input-animals" value="🐱" />
+				<input type="button"  id="emoji-input-plants" value="🍀" />
+
+				<div class="emojis">
+					<div class="emojis-inside"></div>
+				</div>
+			</div>
+
+	
 			<input type="text" id="message-input" />
 			
 			<input type="button" id="send-message" value="Envoyer" />
@@ -28,5 +43,6 @@
 		
 		<script type="text/javascript" src="chat.js"></script>
 		<script type="text/javascript" src="/modules/barrelroll/barrelroll.js"></script>
+		<script type="text/javascript" src="/modules/emoji/emoji.js"></script>
 	</body>
 </html>

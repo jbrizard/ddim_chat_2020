@@ -9,7 +9,6 @@ module.exports =  {
 	handleBarrelRoll: handleBarrelRoll // permet d'appeler cette méthode dans server.js -> barrelRoll.handleBarrelRoll(...)
 }
 
-
 function handleBarrelRoll(io, message)
 {
 	// Passe le message en minuscules (recherche insensible à la casse)

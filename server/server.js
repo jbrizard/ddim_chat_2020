@@ -9,7 +9,8 @@ var fs = require('fs');			// Accès au système de fichier
 // Chargement des modules perso
 var daffy = require('./modules/daffy.js');
 var donald = require('./modules/donald.js');
-var barrelRoll = require('./modules/barrelroll.js');
+var barrelRoll = require('./modules/barrelRoll.js');
+var emoji = require('./modules/emoji.js');
 
 // Initialisation du serveur HTTP
 var app = express();
@@ -42,6 +43,9 @@ io.sockets.on('connection', function(socket)
 	{
 		// Par sécurité, on encode les caractères spéciaux
 		message = ent.encode(message);
+
+		// Transmet le message au module Emoji
+		message = emoji.handleEmoji(io, message);
 		
 		// Transmet le message à tous les utilisateurs (broadcast)
 		io.sockets.emit('new_message', {name:socket.name, message:message});
