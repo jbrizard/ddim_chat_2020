@@ -46,6 +46,7 @@ function sendMessage(io, message)
 			io.sockets.emit('new_message',
 			{
 				name:'Donald',
+				avatar: 'donald',
 				message: message
 			});
 	}, 700);

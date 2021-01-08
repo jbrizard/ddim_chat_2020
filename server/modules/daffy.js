@@ -24,6 +24,7 @@ function handleDaffy(io, message)
 		io.sockets.emit('new_message',
 		{
 			name:'Daffy!!',
+			avatar : 'daffy',
 			message:'<span class="daffy">Coin Coin !</span>'
 		});
 	}
