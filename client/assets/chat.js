@@ -12,25 +12,27 @@ socket.on('new_message', receiveMessage);
 $('#send-message').click(sendMessage);
 
 // Action quand on appuye sur la touche [Entrée] dans le champ de message (= comme Envoyer)
-$('#message-input').keyup(function(evt)
-{
+$('#message-input').keyup(function (evt) {
 	if (evt.keyCode == 13) // 13 = touche Entrée
 		sendMessage();
 });
 
+
 /**
  * Envoi d'un message au serveur
  */
-function sendMessage()
-{
+function sendMessage() {
 	// Récupère le message, puis vide le champ texte
 	var input = $('#message-input');
-	var message = input.val();	
+	var message = input.val();
 	input.val('');
-	
+
 	// On n'envoie pas un message vide
 	if (message == '')
 		return;
+	
+	// Injecte les balises de formatage
+	message = injectStyling(message);
 	
 	// Envoi le message au serveur pour broadcast
 	socket.emit('message', message);
@@ -41,14 +43,14 @@ function sendMessage()
  */
 function receiveMessage(data)
 {
+	// Remplace les balises de formatage
+	data.message = replaceStyling(data.message);
+
 	$('#chat #messages').append(
 		'<div class="message">'
-			+ '<span class="user">' + data.name  + '</span> ' 
-			+ data.message 
-	     + '</div>'
+		+ '<span class="user">' + data.name + '</span> '
+		+  data.message
+		+ '</div>'
 	)
-	.scrollTop(function(){ return this.scrollHeight });  // scrolle en bas du conteneur
+		.scrollTop(function () { return this.scrollHeight });  // scrolle en bas du conteneur
 }
-
-
-
