@@ -8,16 +8,11 @@ var fs = require('fs');			// Accès au système de fichier
 
 // Chargement des modules perso
 var daffy = require('./modules/daffy.js');
-<<<<<<< HEAD
 var donald = require('./modules/donald.js');
 var barrelRoll = require('./modules/barrelRoll.js');
 var emoji = require('./modules/emoji.js');
 var jokes = require('./modules/jokes.js');
-=======
 var giphy = require('./modules/giphy.js');
-var donald = require('./modules/donald.js');
-var barrelRoll = require('./modules/barrelroll.js');
->>>>>>> f654184cfc6dbf363196b7455d5061ee37cae115
 
 // Initialisation du serveur HTTP
 var app = express();
