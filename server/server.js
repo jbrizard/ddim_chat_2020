@@ -11,13 +11,17 @@ var daffy = require('./modules/daffy.js');
 var donald = require('./modules/donald.js');
 var barrelRoll = require('./modules/barrelRoll.js');
 var emoji = require('./modules/emoji.js');
+var jokes = require('./modules/jokes.js');
 
 // Initialisation du serveur HTTP
 var app = express();
 var server = http.createServer(app);
 
 // Initialisation du websocket
-var io = ioLib.listen(server)
+var io = ioLib.listen(server);
+
+// Envois variable io
+jokes.initJoke(io);
 
 // Traitement des requêtes HTTP (une seule route pour l'instant = racine)
 app.get('/', function(req, res)
@@ -58,6 +62,9 @@ io.sockets.on('connection', function(socket)
 		
 		// Transmet le message au module BarrelRoll
 		barrelRoll.handleBarrelRoll(io, message);
+		
+		// Transmet le message au module Jokes (on lui passe aussi l'objet "io" pour qu'il puisse envoyer des messages)
+		jokes.handlejokes(io, message);
 	});
 });
 
