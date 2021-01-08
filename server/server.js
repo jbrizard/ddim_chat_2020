@@ -38,6 +38,8 @@ io.sockets.on('connection', function(socket)
 	// Réception d'un message
 	socket.on('message', function(message)
 	{
+		console.log('message recu : ' + message);
+
 		// Par sécurité, on encode les caractères spéciaux
 		message = ent.encode(message);
 		

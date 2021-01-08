@@ -90,3 +90,34 @@ h1 {
 #messages .message .user:after {
 	content:': ';
 }
+#messages .message .bold {
+	font-weight:bold;
+}
+
+.column {
+	float: left;
+	/*width: 0%;*/
+	margin-left: 8px;
+	margin-right: auto;
+  }
+
+.italic {
+	font-style:italic;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.underline {
+	text-decoration: underline;
+}
+
+.on {
+	background-color: lightgreen;
+
+}
+
+#troisbouton {
+	margin-top: 5px;
+}
