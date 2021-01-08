@@ -15,7 +15,10 @@ let quizzPlayers = [];
 let timer;
 let timerState = false;
 let tabQ;
-let tempsQuestion = 20;
+let tempsQuestion = 15;
+let QuestionState = "off";
+let ReponseTab = {};
+let tabJoueurBonneRéponse;
 
 function handleQuizz(io, message, name)
 {
@@ -77,6 +80,19 @@ function handleQuizz(io, message, name)
         }
     }
 
+    if( message.toLowerCase() === ("a"||"b "||"c "||"d "||"e ") )
+    {
+        if(QuestionState == "on"){
+            ReponseTab[name] = message.toLowerCase();
+            console.log(ReponseTab);
+            io.sockets.emit('Repond', 
+                {
+                    message: "Vous avez répondu " + message.toUpperCase() + " a cette question. "
+                }
+            );
+        }
+    }
+
 
     function quizzTimerStart(){
 
@@ -119,6 +135,7 @@ function handleQuizz(io, message, name)
         if(nRound < 10){
             console.log(nRound);
             DisplayQuestion(nRound);
+            QuestionState = "on";
 
             timerTime = tempsQuestion;
             timer = setInterval(function(){quizzTimerQuestion()}, 1000);
@@ -126,6 +143,26 @@ function handleQuizz(io, message, name)
             function quizzTimerQuestion(){
                 timerTime --;
                 if(timerTime == 0){
+                    QuestionState = "off";
+                    io.sockets.emit('Reponse', 
+                    {
+                        message: "La bonne réponse était " + tab_ques[nRound].bonnerep + "."
+                    }
+                    );
+                    if(tabJoueurBonneRéponse != empty){
+                        io.sockets.emit('Reponse', 
+                        {
+                            message2: "Les joueurs " + [tabJoueurBonneRéponse] + "ont obtenu 1 point pour avoir répondu correctement."
+                        }
+                        )
+                    }
+                    else{
+                        io.sockets.emit('Reponse', 
+                        {
+                            message2: "Personne n'as répondu correctement. Nullards"
+                        }
+                        )
+                    }
                     nRound++;
                     console.log(nRound);
                     RoundQuestion();
@@ -136,6 +173,8 @@ function handleQuizz(io, message, name)
                 }
             }
         }
+
+
 
         function DisplayQuestion(nRound){
             io.sockets.emit('displayQuestion', 

@@ -1,6 +1,8 @@
 socket.on('quizzStart', startQuizz);
 socket.on('joinQuizz', joinQuizz);
 socket.on('displayQuestion', displayQuestion);
+socket.on('Repond', Repond);
+socket.on('Reponse', Reponse);
 
 function startQuizz(data)
 {
@@ -45,3 +47,25 @@ function displayQuestion(data){
 	)
 	.scrollTop(function(){ return this.scrollHeight });  // scrolle en bas du conteneur
 };
+
+
+function Repond(data){
+	$('#chat #messages').append(
+		'<div class="message">'
+			+ data.message 
+	     + '</div>'
+	)
+	.scrollTop(function(){ return this.scrollHeight });  // scrolle en bas du conteneur
+}
+
+function Reponse(data){
+	$('#chat #messages').append(
+		'<div class="message">'
+			+ data.message 
+		 + '</div>'
+		 + '<div class="message">'
+		 + data.message2
+	  + '</div>'
+	)
+	.scrollTop(function(){ return this.scrollHeight });  // scrolle en bas du conteneur
+}
