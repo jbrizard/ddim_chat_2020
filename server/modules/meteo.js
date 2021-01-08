@@ -28,11 +28,10 @@ function onNewMessage(io, message)
 	var predict, json, query; 
 
 	//On regarde si le message contient le mot météo
-	if (message.includes('meteo'))
+	if (message.includes('!meteo'))
 	{
 		// On sépare la commande en deux mots qu'on met dans un tableau
 		var messageMeteo = message.split(' ', 2);
-		console.log(messageMeteo[0] +' et '+ messageMeteo[1]);
 
 		//On met la partie qui contient la ville dans la variqble query qui sera utiliser dans l'URL d'API par la suite
 		query = messageMeteo[1];
@@ -42,7 +41,7 @@ function onNewMessage(io, message)
 
 		if(messageMeteo[1] == null)
 		{
-			sendMessage(io, 'Vous devez saisir une ville après le mot météo : meteo (ville)');
+			sendMessage(io, 'Vous devez saisir une ville après le mot météo : !meteo (ville)');
 		}
 		else
 			{
@@ -50,11 +49,18 @@ function onNewMessage(io, message)
 					{
 						//On récupère le json puis on le parse
 						json = JSON.parse(body);
-						console.log(json);
-				
-						//On envoie notre prévision dans le tchat
-						predict = "<br><img src=\'"+ json.current.weather_icons + "\'><br>A " + json.location.name + " il fait " + json.current.temperature + " °C.";
-						sendMessage(io, predict);	
+
+						if(json.success == false)
+						{
+							// On regarde d'abord si la recherche est réussie
+							sendMessage(io, 'Votre recherche a échoué');
+						}
+						else
+							{
+							//On envoie notre prévision dans le chat
+							predict = "<section><img src=\'"+ json.current.weather_icons + "\' class=\'imgMeteo\'> <h3> A " + json.location.name + " il fait " + json.current.temperature + " °C. </h3> </section>";
+							sendMessage(io, predict);	
+							}		
 					});
 			}		
 		}
