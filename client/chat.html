@@ -19,13 +19,15 @@
 			<div id="messages">
 				
 			</div>
-			<div id="upload-files">
-				<input type="file" id="upload" name="upload" style="display:none" />
-				<input type="text" id="selectedfile" style="display:none" />
-				<input type="button" value="+" id="button-upload" onclick="getFile()" />
+			<div class="toolbar">
+				<div id="upload-files">
+					<input type="file" id="upload" name="upload" style="display:none" />
+					<input type="text" id="selectedfile" style="display:none" />
+					<input type="button" value="+" id="button-upload" onclick="getFile()" />
+				</div>
+				<input type="text" id="message-input"/>
+				<input type="button" id="send-message" value="Envoyer" />
 			</div>
-			<input type="text" id="message-input"/>
-			<input type="button" id="send-message" value="Envoyer" />
 		</div>
 		
 		<script type="text/javascript" src="chat.js"></script>

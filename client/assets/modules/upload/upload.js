@@ -14,8 +14,7 @@ function readFileAsString()
     // Est-ce qu'un fichier a été choisit ?
     if (files.length === 0) 
     {
-        // Si oui, on affiche un message dans la console
-        console.log('Aucun fichier choisi');
+        // Si oui, on execute ces actions
         return;
     }
 
