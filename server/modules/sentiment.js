@@ -10,12 +10,18 @@ module.exports =  {
 }
 
 const Sentiment = require('sentiment');
-var sentiment = new Sentiment();
-
-    var result = sentiment.analyze('Les chats sont stupides.', { language: 'fr' });
-    console.dir(result);
-function handleSentiment(io, message)
+let score = 0;
+	
+function handleSentiment(io, words)
 {
+	let sentiment = new Sentiment();
+	let result = sentiment.analyze(words, { language: 'fr' });
+
+	console.log(socket.name + " " + result);
+
+	score += result.score;
+
+	sendMessage("Votre score est " + score, io);
 }
 
 function sendMessage(message, io)
