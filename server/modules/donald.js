@@ -1,10 +1,8 @@
-﻿/*
- * Nom : Donald Bot
- * Description : Un bot conversationnel
- * Auteur(s) : Jérémie
+/*
+ * Nom : Donald bot 
+ * Description : Bot conversationnel
+ * Auteur(s) : Prof
  */
- 
- // Définit les méthodes "publiques" (utilisation à l'extérieur du module)
 module.exports =  {
 	handleDonald: onNewMessage
 }
@@ -12,7 +10,7 @@ module.exports =  {
 var discussionEngaged = false;
 
 /**
- * Fonction appelée lorsqu'on reçoit un nouveau message
+ * Fonction appel�e lorsqu'on re�oit un nouveau message
  */
 function onNewMessage(io, message)
 {
