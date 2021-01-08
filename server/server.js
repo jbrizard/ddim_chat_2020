@@ -8,6 +8,9 @@ var fs = require('fs');			// Accès au système de fichier
 
 // Chargement des modules perso
 var daffy = require('./modules/daffy.js');
+var giphy = require('./modules/giphy.js');
+var donald = require('./modules/donald.js');
+var barrelRoll = require('./modules/barrelroll.js');
 
 // Initialisation du serveur HTTP
 var app = express();
@@ -21,7 +24,7 @@ app.get('/', function(req, res)
 {
 	res.sendFile(path.resolve(__dirname + '/../client/chat.html'));
 });
-  
+
 // Traitement des fichiers "statiques" situés dans le dossier <assets> qui contient css, js, images...
 app.use(express.static(path.resolve(__dirname + '/../client/assets')));
 
@@ -46,8 +49,16 @@ io.sockets.on('connection', function(socket)
 		
 		// Transmet le message au module Daffy (on lui passe aussi l'objet "io" pour qu'il puisse envoyer des messages)
 		daffy.handleDaffy(io, message);
+		// Transmet le message au module Giphy (on lui passe aussi l'objet "io" pour qu'il puisse envoyer des messages)
+		giphy.handleGiphy(io, message);
+		// Transmet le message au module Donald (on lui passe aussi l'objet "io" pour qu'il puisse envoyer des messages)
+		donald.handleDonald(io, message);
+		// Transmet le message au module BarrelRoll (on lui passe aussi l'objet "io" pour qu'il puisse envoyer des messages)
+		barrelRoll.handleBarrelRoll(io, message);
+
 	});
 });
 
+	//giphy.initiateGiphy()
 // Lance le serveur sur le port 8080 (http://localhost:8080)
 server.listen(8080);

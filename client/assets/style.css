@@ -86,6 +86,7 @@ h1 {
 }
 #messages .message .user {
 	font-weight:bold;
+	color: #FF1500;
 }
 #messages .message .user:after {
 	content:': ';
