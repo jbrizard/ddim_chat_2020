@@ -17,12 +17,12 @@ function handleSentiment(io, words)
 	let sentiment = new Sentiment();
 	let result = sentiment.analyze(words, { language: 'fr' });
 
-	console.log(socket.name + " " + result);
+	//console.log(socket.name + " " + result);
 
 	score += result.score;
 
-	sendMessage("Votre score est " + score, io);
-}
+	sendMessage("Le score général du chat est " + score, io);
+} 
 
 function sendMessage(message, io)
 {
