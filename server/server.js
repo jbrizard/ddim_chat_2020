@@ -10,12 +10,14 @@ var bodyParser = require('body-parser');
 // Chargement des modules perso
 var daffy = require('./modules/daffy.js');
 var donald = require('./modules/donald.js');
+<<<<<<< HEAD
 var barrelRoll = require('./modules/barrelRoll.js');
 var emoji = require('./modules/emoji.js');
 var jokes = require('./modules/jokes.js');
 var giphy = require('./modules/giphy.js');
 var upload = require('./modules/upload.js');
 var meteo = require('./modules/meteo.js');
+var musique = require('./modules/jukebox.js');
 
 // Initialisation du serveur HTTP
 var app = express();
@@ -77,6 +79,9 @@ io.sockets.on('connection', function(socket)
 		
 		// Transmet le message au module Meteo
 		meteo.handleMeteo(io, message);
+		
+		// Transmet le message au module Jukebox (on lui passe aussi l'objet "io" pour qu'il puisse envoyer des messages)
+		musique.handleMusique(io, message);
 	});
 
 	//Réception d'un fichier
