@@ -20,6 +20,7 @@ var musique = require('./modules/jukebox.js');
 var quizz = require('./modules/quizz.js');
 var wiki = require('./modules/wiki.js');
 //~ var sentiment = require('./modules/sentiment.js');
+var twitch = require('./modules/twitch.js');
 
 // Initialisation du serveur HTTP
 var app = express();
@@ -94,6 +95,8 @@ io.sockets.on('connection', function(socket)
 
 		// Transmet le message au module Wiki (on lui passe aussi l'objet "io" pour qu'il puisse envoyer des messages)
 		wiki.handleWiki(io, message);
+		
+		twitch.handleTwitch(io, message, socket);
 		
 		// Transmet le message au module Sentiment (on lui passe aussi l'objet "io" pour qu'il puisse envoyer des messages)
 		//~ sentiment.handleSentiment(io, message);

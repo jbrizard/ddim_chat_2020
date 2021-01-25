@@ -8,6 +8,7 @@ socket.emit('user_enter', name);
 // Gestion des événements diffusés par le serveur
 socket.on('new_message', receiveMessage);
 
+
 // Action quand on clique sur le bouton "Envoyer"
 $('#send-message').click(sendMessage);
 
@@ -48,6 +49,7 @@ function receiveMessage(data)
 	data.message = replaceStyling(data.message);
 
 	$('#chat #messages').append(
+		
 		'<div class="message">'
 		+ '<span class="user">' + data.name + '</span> '
 		+  data.message
