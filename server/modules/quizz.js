@@ -80,7 +80,7 @@ function handleQuizz(io, message, name)
         }
     }
 
-    if( message.toLowerCase() === ("a"||"b "||"c "||"d "||"e ") )
+    if( ["a","b", "c", "d", "e"].includes(message.toLowerCase()) )
     {
         if(QuestionState == "on"){
             ReponseTab[name] = message.toLowerCase();
@@ -149,7 +149,7 @@ function handleQuizz(io, message, name)
                         message: "La bonne réponse était " + tab_ques[nRound].bonnerep + "."
                     }
                     );
-                    if(tabJoueurBonneRéponse != empty){
+                    if(tabJoueurBonneRéponse.length > 0){
                         io.sockets.emit('Reponse', 
                         {
                             message2: "Les joueurs " + [tabJoueurBonneRéponse] + "ont obtenu 1 point pour avoir répondu correctement."

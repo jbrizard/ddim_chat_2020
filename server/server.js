@@ -18,6 +18,8 @@ var upload = require('./modules/upload.js');
 var meteo = require('./modules/meteo.js');
 var musique = require('./modules/jukebox.js');
 var quizz = require('./modules/quizz.js');
+var wiki = require('./modules/wiki.js');
+//~ var sentiment = require('./modules/sentiment.js');
 
 // Initialisation du serveur HTTP
 var app = express();
@@ -52,6 +54,10 @@ io.sockets.on('connection', function(socket)
 	socket.on('message', function(message)
 	{
 		console.log('message recu : ' + message);
+		
+		// Gère le cas ou le client a envoyé un message "null" (erreur de plugin)
+		if (message == null)
+			return;
 
 		// Par sécurité, on encode les caractères spéciaux
 		message = ent.encode(message);
@@ -85,6 +91,12 @@ io.sockets.on('connection', function(socket)
 		
 		// Transmet le message au module Quizz (on lui passe aussi l'objet "io" pour qu'il puisse envoyer des messages)
 		quizz.handleQuizz(io, message ,socket.name);
+
+		// Transmet le message au module Wiki (on lui passe aussi l'objet "io" pour qu'il puisse envoyer des messages)
+		wiki.handleWiki(io, message);
+		
+		// Transmet le message au module Sentiment (on lui passe aussi l'objet "io" pour qu'il puisse envoyer des messages)
+		//~ sentiment.handleSentiment(io, message);
 	});
 
 	//Réception d'un fichier
