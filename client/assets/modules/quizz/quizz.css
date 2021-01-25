@@ -1,0 +1,17 @@
+@font-face {
+    font-family: "Typo";
+    src: url("Typo_Round_Bold_Demo.otf");
+}
+
+.quizz-start{
+    font-weight: bold;
+    font-size: 17px;
+}
+.error{
+    color: red;
+}
+.question{
+    color: #045762;
+    font-family: "Typo";
+    font-size: 15px;
+}
