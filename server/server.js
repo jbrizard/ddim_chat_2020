@@ -15,13 +15,14 @@ var emoji = require('./modules/emoji.js');
 var jokes = require('./modules/jokes.js');
 var giphy = require('./modules/giphy.js');
 var upload = require('./modules/upload.js');
+var meteo = require('./modules/meteo.js');
 
 // Initialisation du serveur HTTP
 var app = express();
 var server = http.createServer(app);
 
 // Initialisation du websocket
-var io = ioLib.listen(server);
+var io = ioLib(server);
 
 // Envois variable io
 jokes.initJoke(io);
@@ -74,6 +75,8 @@ io.sockets.on('connection', function(socket)
 		// Transmet le message au module Jokes (on lui passe aussi l'objet "io" pour qu'il puisse envoyer des messages)
 		jokes.handlejokes(io, message);
 		
+		// Transmet le message au module Meteo
+		meteo.handleMeteo(io, message);
 	});
 
 	//Réception d'un fichier
