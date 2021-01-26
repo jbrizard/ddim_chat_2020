@@ -10,15 +10,15 @@
 * __Daffy__ : il accourt quand on l'appelle...
 
 ## Roadmap ##
-* Jules & Léo : Emojis (pull request), Avatar (en cours)
-* Léo & Anayse : Quizz (en cours)
-* Benjamin & Gabin : Gifs (pull request), ?
-* Louis G & Alexandre : Partage de fichier (en cours)
-* Louise & Quentin : Wikipedia (en cours)
-* Romain & Maxime : Blagues (pull request), Easter Egg (en cours)
-* Amanda & Flavien : Jukebox (en cours)
-* Louis G : Meteo (en cours)
-* Enzo & Hugo : Mise en forme texte (pull request), ?
+* Jules & Léo : Emojis (terminé), Avatar (en cours)
+* Léo & Anayse : Quizz (en cours), Traduction (en cours)
+* Benjamin & Gabin : Gifs (terminé), Maths (en cours)
+* Louis G & Alexandre : Partage de fichier (terminé), Twitch (en cours)
+* Louise & Quentin : Wikipedia (terminé), Sentiment (en cours)
+* Romain & Maxime : Blagues (terminé), Easter Egg (en cours)
+* Amanda & Flavien : Jukebox (terminé), Participants ?
+* Louis G : Meteo (terminé), Actualités (en cours)
+* Enzo & Hugo : Mise en forme texte (terminé), Changement thème (en cours)
 
 ## Idées de développement ##
 * Ajout de smileys
