@@ -3,3 +3,38 @@
 	width:200px;
 	max-width:100%;
 }
+
+.article {
+	border-bottom: 2px solid #457;
+	border-radius: 3px;
+	background: linear-gradient(#ffffff00, #bdd8fb);
+	margin: 0;
+	padding: 5px;
+}
+
+.summ {
+	display: inline-block;
+	text-align: justify;
+	max-height: 10.5vh;
+	overflow-x: hidden;
+}
+
+.summ>p {
+	margin: 0;
+	padding-top: 15px;
+}
+
+h3.title {
+	margin: 5px 0 0 0;
+	text-transform: uppercase;
+	color: #457;
+}
+
+h3.title:hover {
+	text-decoration: underline #457;
+}
+
+a.encard {
+	text-decoration: none;
+	color: #474747;
+}

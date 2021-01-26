@@ -61,12 +61,16 @@ function searchWiki(keyword, io)
 	.then(page => page.summary())
 	.then(function(summary)
 	{
+		if(!summary) 
+		{
+			summary = "Aucun résumé à afficher pour cette page.";
+		}
 		sendMessage(
 			'Voici un lien vers la page Wikipedia de ' + keyword + ' :'
 			+ '<div class="article">'
 			+ '<a class="encard" target="_blank" rel="noopener noreferrer" href="https://fr.wikipedia.org/wiki/' + keyword +'">'
-			+ '<h3 class="title">' + keyword + '</h3>'
-			+ '<span class="summ"><p>' + summary + '</p></span></a></div>'
+			+ '<h3 class="title">' + keyword + '</h3></a>'
+			+ '<span class="summ"><p>' + summary + '</p></span></div>'
 		, io);
 	});
 }

@@ -90,36 +90,3 @@ h1 {
 #messages .message .user:after {
 	content:': ';
 }
-
-
-
-/* STYLE WIKI.JS */
-
-.article {
-	border: 1px solid #e64c4c;
-	border-radius: 5px;
-	background: rgba(136, 136, 136, 0.144);
-	margin: 0;
-	padding: 5px;
-}
-
-.summ {
-	display: inline-block;
-	text-align: justify;
-	max-height: 8vh;
-	overflow: hidden;
-}
-
-.summ>p {
-	margin: 0;
-}
-
-h3.title {
-	margin: 0;
-	padding-bottom: 15px;
-}
-
-a.encard {
-	text-decoration: none;
-	color: #474747;
-}
