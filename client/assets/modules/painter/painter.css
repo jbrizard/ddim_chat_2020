@@ -1,0 +1,62 @@
+body.painting #chat {
+	user-select: none;
+}
+
+#paint {
+	position:fixed;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+    z-index: -1;
+	pointer-events:none;
+}
+
+#brushes {
+	position:absolute;
+	bottom:30px;
+	left:30px;
+	overflow:hidden;
+	
+}
+#brushes .brush,
+#brushes .nobrush {
+	float:left;
+	width:30px;
+	height:30px;
+	margin:5px;
+	border-radius:5px;
+	box-sizing: border-box;
+	cursor:pointer;
+}
+#brushes .brush.active {
+	border:solid 2px #fff;
+}
+#brushes .brush.black {
+	background:#000;
+}
+#brushes .brush.red {
+	background:red;
+}
+#brushes .brush.yellow {
+	background:yellow;
+}
+
+
+#brushes .nobrush {
+	position:relative;
+	background:#fff;
+	border:solid 2px #444;
+}
+#brushes .nobrush.active {
+	border-color:#333;
+}
+#brushes .nobrush:after {
+	position:absolute;
+    top: -6px;
+    left: 3px;
+	content:'\d7';
+	font-size: 34px;
+    color: #444;
+    pointer-events: none;
+}

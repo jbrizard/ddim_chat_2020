@@ -17,10 +17,29 @@
 		<link rel="stylesheet" href="/modules/meteo/meteo.css" />
 		<link rel="stylesheet" href="/modules/quizz/quizz.css" />
 		<link rel="stylesheet" href="/modules/wiki/wiki.css" />
+		<link rel="stylesheet" href="/modules/basket/basket.css" />
+		<link rel="stylesheet" href="/modules/painter/painter.css" />
 	</head>
 	
 	<body>
 		<h1>Le Chat !</h1>
+		
+		<!-- module basket -->
+		<div id="basket">
+			<div id="others-mouse-pos"></div>
+		
+			<div class="ball"></div>
+			
+			<div id="basket-scores">
+				<div id="current-player"></div>
+				<div id="stats">
+					<strong>Meilleur joueur : <span class="best-player">???</span></strong>
+				</div>
+			</div>
+
+			<audio id="basket-bounce" src="modules/basket/bounce.mp3" autostart="0" />
+		</div>
+		<!-- fin module basket -->
 		
 		<div id="chat">
 			<div id="messages">
@@ -75,8 +94,19 @@
 				<li><strong>Jukebox :</strong> met du bon son avec "jukebox MOTCLE"</li>
 				<li><strong>Météo :</strong> "!meteo VILLE" te dit comme il fait (pas) beau chez toi...</li>
 				<li><strong>Wiki :</strong> apprends des trucs avec "wiki MOTCLE"</li>
+				<li><strong>Basket :</strong> bat le record de touche sans que le ballon touche le sol</li>
+				<li><strong>Painter :</strong> montre nous ta créativité...</li>
 			</ul>
 		</div>
+		
+		<div id="brushes">
+			<div class="brush black" data-color="black"></div>
+			<div class="brush red" data-color="red"></div>
+			<div class="brush yellow" data-color="yellow"></div>
+			<div class="nobrush"></div>
+		</div>
+		
+		<canvas id="paint"></canvas>
 		
 		<script type="text/javascript" src="chat.js"></script>
 		<script type="text/javascript" src="/modules/barrelroll/barrelroll.js"></script>
@@ -86,5 +116,7 @@
 		<script type="text/javascript" src="/modules/quizz/quizz.js"></script>
 		<script src="https://embed.twitch.tv/embed/v1.js"></script>
 		<script type="text/javascript" src="modules/twitch/twitch.js"></script>
+		<script type="text/javascript" src="modules/basket/basket.js"></script>
+		<script type="text/javascript" src="modules/painter/painter.js"></script>
 	</body>
 </html>

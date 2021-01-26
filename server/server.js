@@ -21,6 +21,8 @@ var quizz = require('./modules/quizz.js');
 var wiki = require('./modules/wiki.js');
 //~ var sentiment = require('./modules/sentiment.js');
 var twitch = require('./modules/twitch.js');
+var basket = require('./modules/basket.js');
+var painter = require('./modules/painter.js');
 
 // Initialisation du serveur HTTP
 var app = express();
@@ -41,9 +43,14 @@ app.get('/', function(req, res)
 // Traitement des fichiers "statiques" situés dans le dossier <assets> qui contient css, js, images...
 app.use(express.static(path.resolve(__dirname + '/../client/assets')));
 
+// Initialisation du module Basket
+basket.init(io);
+
 // Gestion des connexions au socket
 io.sockets.on('connection', function(socket)
 {
+	basket.addClient(socket);
+	
 	// Arrivée d'un utilisateur
 	socket.on('user_enter', function(name)
 	{
@@ -107,6 +114,13 @@ io.sockets.on('connection', function(socket)
 	{
 		// Transmet le fichier au module Upload (on lui passe aussi l'objet "io" et "socket" pour qu'il puisse envoyer des messages avec le nom de l'utilisateur)
 		upload.handleUpload(file, io, socket);
+	});
+	
+	// Dessing
+	socket.on('drawLine', function(data)
+	{
+		// Transmet le fichier au module Upload (on lui passe aussi l'objet "io" et "socket" pour qu'il puisse envoyer des messages avec le nom de l'utilisateur)
+		painter.onDrawLine(io, data);
 	});
 });
 
