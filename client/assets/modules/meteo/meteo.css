@@ -1,0 +1,9 @@
+section.meteo {
+    background-color: #c5c5c5;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    align-items: center;
+    color: black;
+    border-radius: 10px;
+}
