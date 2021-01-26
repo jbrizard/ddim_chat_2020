@@ -32,10 +32,9 @@ function sendMessage() {
 	if (message == '')
 		return;
 	
-	console.log('messageA ', message);
 	// Injecte les balises de formatage
 	message = injectStyling(message);
-	console.log('messageB ', message);
+	
 	// Envoi le message au serveur pour broadcast
 	socket.emit('message', message);
 }
