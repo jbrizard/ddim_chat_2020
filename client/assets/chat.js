@@ -5,9 +5,6 @@ var socket = io.connect('http://localhost:8080');
 var name = prompt('Quel est votre pseudo ?');
 socket.emit('user_enter', name);
 
-var avatar = 'man';
-socket.emit('user_avatar', avatar);
-
 // Gestion des événements diffusés par le serveur
 socket.on('new_message', receiveMessage);
 
@@ -44,10 +41,9 @@ function sendMessage()
  */
 function receiveMessage(data)
 {
-	console.log(data)
 	$('#chat #messages').append(
 		'<div class="message">'
-			+ '<img class="avatar" src="/modules/avatar/medias/'+data.avatar+'.png"></img>'
+			+ '<img class="avatar" src="'+data.avatar+'"></img>'
 			+ '<span class="user">' + data.name  + '</span> ' 
 			+ data.message 
 	     + '</div>'

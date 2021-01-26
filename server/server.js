@@ -38,19 +38,26 @@ io.sockets.on('connection', function(socket)
 	{
 		// Stocke le nom de l'utilisateur dans l'objet socket
 		socket.name = name;
-		socket.avatar = 'man';
+		// Prévient au module que c'est un nouvel utilisateur
+		avatar.handleNewAvatar();
 	});
 
-	// 
+	//Change l'adresse de l'avatar
 	socket.on('user_avatar', function(nomAvatar)
 	{
 		avatar.handleChangeAvatar(io, socket, nomAvatar);
 	});
 
+	//Charge le fichier image pour l'avatar
+	socket.on('new_file_avatar', function(file)
+	{
+		// Transmet le fichier au module Upload (on lui passe aussi l'objet "io" et "socket" pour qu'il puisse envoyer des messages avec le nom de l'utilisateur)
+		avatar.handleUploadAvatar(file, io, socket);
+	});
+
 	// Réception d'un message
 	socket.on('message', function(message)
 	{
-		console.log(socket)
 		// Par sécurité, on encode les caractères spéciaux
 		message = ent.encode(message);
 		
