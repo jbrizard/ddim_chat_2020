@@ -64,8 +64,7 @@ function searchWiki(keyword, io)
 		sendMessage(
 			'Voici un lien vers la page Wikipedia de ' + keyword + ' :'
 			+ '<div class="article">'
-			+ '<a class="encard" target="_blank" rel="noopener noreferrer" href="https://fr.wikipedia.org/wiki/' + keyword +'">'
-			+ '<h3 class="title">' + keyword + '</h3>'
+			+ '<h3 class="title"> <a class="encard" target="_blank" rel="noopener noreferrer" href="https://fr.wikipedia.org/wiki/' + keyword +'">' + keyword + '</a> </h3>'
 			+ '<span class="summ"><p>' + summary + '</p></span></a></div>'
 		, io);
 	});
