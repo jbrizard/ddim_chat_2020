@@ -18,8 +18,10 @@ let tabQ;
 let tempsQuestion = 15;
 let QuestionState = "off";
 let ReponseTab = {};
-let tabJoueurBonneRéponse;
+let tabJoueurBonneRéponse = [];
+let tabPoints = [];
 
+//Socket.id > socket.name car pas de doublons
 function handleQuizz(io, message, name)
 {
     if(message.includes("!StartQuizz"))
@@ -80,8 +82,10 @@ function handleQuizz(io, message, name)
         }
     }
 
-    if( message.toLowerCase() === ("a"||"b "||"c "||"d "||"e ") )
+    if (['A', 'B', 'C', 'D', 'E'].includes(message.toUpperCase()))
     {
+
+        //Rajouter joinQuizz tab
         if(QuestionState == "on"){
             ReponseTab[name] = message.toLowerCase();
             console.log(ReponseTab);
@@ -122,9 +126,14 @@ function handleQuizz(io, message, name)
         }
         for(let i = 0; i < tabQ.length; i++){
             tabQ[i] = tab_ques[tabQ[i]];
+            console.log(tabQ);
         }
 
         nRound = 0;
+        for(let i = 0; i < quizzPlayers.length; i++){
+            tabPoints[quizzPlayers[i]] = 0;
+            console.log(tabPoints)
+        }
         RoundQuestion();
 
 
@@ -133,9 +142,10 @@ function handleQuizz(io, message, name)
     function RoundQuestion(){
 
         if(nRound < 10){
-            console.log(nRound);
             DisplayQuestion(nRound);
             QuestionState = "on";
+            ReponseTab = [];
+            tabJoueurBonneRéponse = [];
 
             timerTime = tempsQuestion;
             timer = setInterval(function(){quizzTimerQuestion()}, 1000);
@@ -144,21 +154,28 @@ function handleQuizz(io, message, name)
                 timerTime --;
                 if(timerTime == 0){
                     QuestionState = "off";
-                    io.sockets.emit('Reponse', 
-                    {
-                        message: "La bonne réponse était " + tab_ques[nRound].bonnerep + "."
+                    for(let i = 0; i < quizzPlayers.length; i++){
+                        if(ReponseTab[quizzPlayers[i]] == tabQ[nRound].lettre.toLowerCase()){
+                            tabJoueurBonneRéponse.push(quizzPlayers[i]);
+                        }
                     }
-                    );
-                    if(tabJoueurBonneRéponse != empty){
+                    for(let i = 0; i < tabJoueurBonneRéponse.length; i++){
+                        tabPoints[tabJoueurBonneRéponse[i]] += 1;
+                        console.log(tabPoints);
+                    }
+                    console.log(tabJoueurBonneRéponse)
+                    if(tabJoueurBonneRéponse.length != 0 ){
                         io.sockets.emit('Reponse', 
                         {
-                            message2: "Les joueurs " + [tabJoueurBonneRéponse] + "ont obtenu 1 point pour avoir répondu correctement."
+                            message: "La bonne réponse était " + tabQ[nRound].lettre + tabQ[nRound].bonnerep + ".",
+                            message2: "Le(s) joueur(s) : " + tabJoueurBonneRéponse + " ont obtenu 1 point pour avoir répondu correctement."
                         }
                         )
                     }
                     else{
                         io.sockets.emit('Reponse', 
                         {
+                            message: "La bonne réponse était " + tabQ[nRound].bonnerep + ".",
                             message2: "Personne n'as répondu correctement. Nullards"
                         }
                         )
