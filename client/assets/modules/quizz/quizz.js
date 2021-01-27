@@ -1,14 +1,21 @@
 socket.on('quizzStart', startQuizz);
 socket.on('joinQuizz', joinQuizz);
 socket.on('displayQuestion', displayQuestion);
-socket.on('Repond', Repond);
-socket.on('Reponse', Reponse);
-socket.on('Points', Points);
-socket.on('EndQuizz', EndQuizz);
+socket.on('repond', repond);
+socket.on('reponse', reponse);
+socket.on('points', points);
+socket.on('endQuizz', endQuizz);
 
 function startQuizz(data)
 {
-	$('body').append('<ul id="ListPoint"><li id=' + data.name + '>'+ data.name + ' : 0 points </li></ul>');
+	$('body').append(
+		'<div class="quizzDiv">' +
+		'<h3>Quizz</h3>' +
+		'<ul id="ListPoint">' +
+			'<li id=' + data.name + '>'+ data.name + ' : 0 points </li>' +
+		'</ul>' +
+		'</div>'
+	);
 	$('#chat #messages').append(
 		'<div class="message quizz-start '+ data.state+'">'
 			+ data.message 
@@ -53,7 +60,7 @@ function displayQuestion(data){
 };
 
 
-function Repond(data){
+function repond(data){
 	$('#chat #messages').append(
 		'<div class="message">'
 			+ data.message 
@@ -62,7 +69,7 @@ function Repond(data){
 	.scrollTop(function(){ return this.scrollHeight });  // scrolle en bas du conteneur
 }
 
-function Reponse(data){
+function reponse(data){
 	$('#chat #messages').append(
 		'<div class="message">'
 			+ data.message 
@@ -74,7 +81,7 @@ function Reponse(data){
 	.scrollTop(function(){ return this.scrollHeight });  // scrolle en bas du conteneur
 }
 
-function Points(data){
+function points(data){
 	
 	data.tabJ.forEach(joueur => {
 		document.querySelector('li#'+joueur).innerHTML = joueur + ': ' + data.tab[joueur] + ' Point(s)';
@@ -83,12 +90,12 @@ function Points(data){
 
 }
 
-function EndQuizz(data){
+function endQuizz(data){
 	$('#chat #messages').append(
 		'<div class="message">'
 			+ data.message 
 		 + '</div>'
-		 + '<div class="message">'
+		 + '<div class="gagnant">'
 		 + data.message2
 	  + '</div>'
 	)

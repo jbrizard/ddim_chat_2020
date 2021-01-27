@@ -16,8 +16,8 @@ let timer;
 let timerState = false;
 let tabQ;
 let tempsQuestion = 0;
-let QuestionState = "off";
-let ReponseTab = {};
+let questionState = "off";
+let reponseTab = {};
 let tabJoueurBonneRéponse = [];
 let tabPoints = {};
 let tabPointFinaux = [];
@@ -35,6 +35,9 @@ function handleQuizz(io, message, name)
             timerTime = 5;
             messageSplit = message.split(" ");
             nbQuestionTotal = parseInt(messageSplit[1]) || 10;
+            if(nbQuestionTotal > tab_ques.length){
+                nbQuestionTotal = tab_ques.length;
+            }
             tempsQuestion = parseInt(messageSplit[2]) || 10;
             timer = setInterval(function(){quizzTimerStart()} , 1000);
             io.sockets.emit('quizzStart', 
@@ -91,9 +94,9 @@ function handleQuizz(io, message, name)
     if (['A', 'B', 'C', 'D', 'E'].includes(message.toUpperCase()))
     {
 
-        if(QuestionState == "on"){
-            ReponseTab[name] = message.toLowerCase();
-            io.sockets.emit('Repond', 
+        if(questionState == "on"){
+            reponseTab[name] = message.toLowerCase();
+            io.sockets.emit('repond', 
                 {
                     message: "Vous avez répondu " + message.toUpperCase() + " a cette question. "
                 }
@@ -145,8 +148,8 @@ function handleQuizz(io, message, name)
 
         if(nRound < nbQuestionTotal){
             DisplayQuestion(nRound);
-            QuestionState = "on";
-            ReponseTab = [];
+            questionState = "on";
+            reponseTab = [];
             tabJoueurBonneRéponse = [];
 
             timerTime = tempsQuestion;
@@ -155,9 +158,9 @@ function handleQuizz(io, message, name)
             function quizzTimerQuestion(){
                 timerTime --;
                 if(timerTime == 0){
-                    QuestionState = "off";
+                    questionState = "off";
                     for(let i = 0; i < quizzPlayers.length; i++){
-                        if(ReponseTab[quizzPlayers[i]] == tabQ[nRound].lettre.toLowerCase()){
+                        if(reponseTab[quizzPlayers[i]] == tabQ[nRound].lettre.toLowerCase()){
                             tabJoueurBonneRéponse.push(quizzPlayers[i]);
                         }
                     }
@@ -166,14 +169,14 @@ function handleQuizz(io, message, name)
                     }
                     var test = [];
                     test['truc'] = 't';
-                    io.sockets.emit('Points', 
+                    io.sockets.emit('points', 
                     {
                         tab: tabPoints,
                         tabJ: quizzPlayers
                     }
                     )
                     if(tabJoueurBonneRéponse.length != 0 ){
-                        io.sockets.emit('Reponse', 
+                        io.sockets.emit('reponse', 
                         {
                             message: "La bonne réponse était " + tabQ[nRound].lettre + ' ' + tabQ[nRound].bonnerep + ".",
                             message2: "Le(s) joueur(s) : " + tabJoueurBonneRéponse + " a/ont obtenu 1 point pour avoir répondu correctement."
@@ -181,7 +184,7 @@ function handleQuizz(io, message, name)
                         )
                     }
                     else{
-                        io.sockets.emit('Reponse', 
+                        io.sockets.emit('reponse', 
                         {
                             message: "La bonne réponse était " + tabQ[nRound].bonnerep + ".",
                             message2: "Personne n'as répondu correctement. Nullards"
@@ -225,7 +228,7 @@ function handleQuizz(io, message, name)
             quizzPlayers = [];
             tabPointFinaux = [];
             nRound = 0;
-            io.sockets.emit('EndQuizz', 
+            io.sockets.emit('endQuizz', 
             {
                 message: "Le quizz est terminé !",
                 message2: "&#10024; &#10024; Le gagnant est " + winner +  " ! Bravo. &#10024; &#10024;"

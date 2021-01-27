@@ -151,7 +151,7 @@ var tab_ques = [{
         "Albanie",
     ],
     bonnerep:"Argentine",
-    lettre: "E",
+    lettre: "D",
     theme:"Thème : Géographie"
 },
 {
