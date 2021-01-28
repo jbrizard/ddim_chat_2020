@@ -42,13 +42,14 @@ io.sockets.on('connection', function(socket)
 		avatar.handleNewAvatar();
 	});
 
-	//Change l'adresse de l'avatar
+	// Change l'adresse de l'avatar
 	socket.on('user_avatar', function(nomAvatar)
 	{
+		// Appel du module pour changer d'avatar
 		avatar.handleChangeAvatar(io, socket, nomAvatar);
 	});
 
-	//Charge le fichier image pour l'avatar
+	// Charge le fichier image pour l'avatar
 	socket.on('new_file_avatar', function(file)
 	{
 		// Transmet le fichier au module Upload (on lui passe aussi l'objet "io" et "socket" pour qu'il puisse envoyer des messages avec le nom de l'utilisateur)
