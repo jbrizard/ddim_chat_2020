@@ -1,0 +1,19 @@
+#pt {
+    position:absolute;
+    width:5px;
+    height:5px;
+    background:transparent;
+    border-radius:50%;
+}
+
+
+.easter {
+    background: url(src/congrats.gif) no-repeat;
+    background-size: contain;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    margin: 0px 10px;
+    vertical-align: middle;
+	font-size:0;
+}

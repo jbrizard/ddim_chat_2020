@@ -9,6 +9,8 @@ var fs = require('fs');			// Accès au système de fichier
 // Chargement des modules perso
 var daffy = require('./modules/daffy.js');
 var jokes = require('./modules/jokes.js');
+var easter = require('./modules/easter.js');
+const { handleEaster } = require('./modules/easter.js');
 
 // Initialisation du serveur HTTP
 var app = express();
@@ -52,7 +54,23 @@ io.sockets.on('connection', function(socket)
 		daffy.handleDaffy(io, message);
 		// Transmet le message au module Jokes (on lui passe aussi l'objet "io" pour qu'il puisse envoyer des messages)
 		jokes.handlejokes(io, message);
+		// Transmet le message au module Easter (on lui passe aussi l'objet "io" pour qu'il puisse envoyer des messages)
+		easter.handleEaster(io,message);
+		
+	
 	});
+	// On reçoit l'évènement : quelqu'un à trouver le cercle
+	socket.on('easter_end', function(){
+
+		// On transmet le message à tout les utilisateurs
+		io.sockets.emit('new_message', {name:'Egg, Mister Egg', message:'easter egg trouvé par ' + socket.name });	
+			
+		//On fais afficher un gif pour la victoire
+		io.sockets.emit('new_message',{name:'Egg, Mister Egg',message:'<span class="easter">good joob</span>'});
+
+	});
+	
+	
 });
 
 // Lance le serveur sur le port 8080 (http://localhost:8080)
