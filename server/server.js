@@ -123,9 +123,6 @@ io.sockets.on('connection', function(socket)
 		wiki.handleWiki(io, message);
 		
 		twitch.handleTwitch(io, message, socket);
-		
-		// Transmet le message au module Sentiment (on lui passe aussi l'objet "io" pour qu'il puisse envoyer des messages)
-		//~ sentiment.handleSentiment(io, message);
 	});
 
 	//Réception d'un fichier
