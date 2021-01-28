@@ -1,21 +1,17 @@
 /* Module Emoji */
 
-input[type='button'].emoji{
+input[type='button'].emoji {
   display: inline-block;
   background-color:transparent;
   border:none;
 }
-
 input[type="button"]:active, input[type="button"]:focus {
   background-color:gray;
 }
-
-.emojis.active{
+.emojis.active {
   display: block;
   position:relative;
 }
-
-
 .emojis-inside.active {
   display: block;
   position: absolute;
@@ -28,8 +24,7 @@ input[type="button"]:active, input[type="button"]:focus {
   left: 50%;
   transform: translateX(-50%);
 }
-
-.emojis-input{
+.emojis-input {
   margin-bottom: 7px;
   margin-top:-12px;
 }

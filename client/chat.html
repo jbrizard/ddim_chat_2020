@@ -8,10 +8,10 @@
 		<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 		<script src="/socket.io/socket.io.js"></script>	<!-- fichier injecté par NodeJS -->
 		
-		<link rel="stylesheet" href="style.css" />
-		<link rel="stylesheet" href="/modules/daffy/daffy.css" />
-		<link rel="stylesheet" href="/modules/donald/donald.css" />
-		<link rel="stylesheet" href="/modules/barrelroll/barrelroll.css" />
+		<link rel="stylesheet" href="style.css"/>
+		<link rel="stylesheet" href="/modules/daffy/daffy.css"/>
+		<link rel="stylesheet" href="/modules/donald/donald.css"/>
+		<link rel="stylesheet" href="/modules/barrelroll/barrelroll.css"/>
 		<link rel="stylesheet" href="/modules/emoji/emoji.css">
 		<link rel="stylesheet" href="/modules/avatar/avatar.css"/>
 
@@ -22,36 +22,29 @@
 		
 		<div id="chat">
 			<div class="avatars-input">
-				<input type="button" id="avatar-input" value="🧞‍♂️">
-
+				<input type="button" id="avatar-input" value="🧞‍♂️"/>
 				<div class="avatars">
 					<div class="avatars-inside"></div>
 				</div>
 			</div>
 			
 			<div id="messages">
-				
 			</div>
-
 			<div class="emojis-input">
-				<input type="button"  id="emoji-input-faces" value="😀" />
-				<input type="button"  id="emoji-input-gestures" value="👍" />
-				<input type="button"  id="emoji-input-love" value="❤️" />
-				<input type="button"  id="emoji-input-animals" value="🐱" />
-				<input type="button"  id="emoji-input-plants" value="🍀" />
+				<input type="button"  id="emoji-input-faces" value="😀"/>
+				<input type="button"  id="emoji-input-gestures" value="👍"/>
+				<input type="button"  id="emoji-input-love" value="❤️"/>
+				<input type="button"  id="emoji-input-animals" value="🐱"/>
+				<input type="button"  id="emoji-input-plants" value="🍀"/>
 
 				<div class="emojis">
 					<div class="emojis-inside"></div>
 				</div>
 			</div>
 
-
-	
-			<input type="text" id="message-input" />
-			
-			<input type="button" id="send-message" value="Envoyer" />
+			<input type="text" id="message-input"/>
+			<input type="button" id="send-message" value="Envoyer"/>
 		</div>
-		
 		<script type="text/javascript" src="chat.js"></script>
 		<script type="text/javascript" src="/modules/barrelroll/barrelroll.js"></script>
 		<script type="text/javascript" src="/modules/emoji/emoji.js"></script>

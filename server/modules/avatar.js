@@ -4,7 +4,7 @@
  * Auteur(s) : Jules CANNET et Léo PIAZZA
  */
 
-//Chargement des dépendances
+// Chargement des dépendances
 var fs = require('fs');	
 
  // Définit les méthodes "publiques" (utilisation à l'extérieur du module)
@@ -14,13 +14,14 @@ module.exports =  {
 	handleUploadAvatar: handleUploadAvatar,
 }
 
-//Est-ce que c'est un premier avatar de l'utilisateur?
-var isFirst=true;
+// Est-ce que c'est un premier avatar de l'utilisateur?
+var isFirst = true;
 /**
  * isFirst est vrai si l'utilisateur est nouvel
  */
-function handleNewAvatar(){
-	isFirst= true;
+function handleNewAvatar()
+{
+	isFirst = true;
 }
 
 /**
@@ -33,8 +34,10 @@ function handleChangeAvatar(io, socket, nomAvatar)
 	{
 		var message = "a modifié son avatar";
 		io.sockets.emit('new_message',{name:socket.name, message:message, avatar:socket.avatar});
-	} else {
-		isFirst=false;
+    } 
+    else 
+    {
+		isFirst = false;
 	}
 }
 
@@ -55,11 +58,13 @@ function handleUploadAvatar(file, io, socket)
         {
             error = true;
             return console.log(err);
-        } else {
+        } 
+        else 
+        {
 			handleChangeAvatar(io, socket, '/modules/avatar/medias/'+fileName);
 		}
     });
-    if(error)
+    if (error)
     {
         alert("une erreur est survenue lors de l'upload du fichier");
     }
