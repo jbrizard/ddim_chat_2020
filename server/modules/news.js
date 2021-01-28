@@ -47,7 +47,7 @@ function onNewMessage(io, message)
 		}
 
 		//Est-ce que le message envoyé contient la commande !ENune, si oui on débute notre fonction
-	if (message.includes('!ENune'))
+	if (message.includes('!uneAnglais'))
 	{
 	
 		//Requête de 3 articles pour l'API avec en paramètres la clé et le pays
@@ -95,7 +95,7 @@ function onNewMessage(io, message)
 		}
 
 	//Est-ce que le message envoyé contient la commande !ENnews, si oui on débute notre fonction
-	if (message.includes('!ENnews'))
+	if (message.includes('!newsAnglais'))
 	{
 		// On conserve la requete en enlevant la commande
 		var messageNews = message.substring(8);
