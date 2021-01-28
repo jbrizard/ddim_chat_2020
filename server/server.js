@@ -29,6 +29,9 @@ var trad = require('./modules/traduction.js');
 var news = require('./modules/news.js');
 var maths = require('./modules/maths.js');
 
+// Initialise la liste des participants
+var participants = {};
+
 // Initialisation du serveur HTTP
 var app = express();
 var server = http.createServer(app);
@@ -64,6 +67,20 @@ io.sockets.on('connection', function(socket)
 		
 		// Prévient au module que c'est un nouvel utilisateur
 		avatar.handleNewAvatar();
+
+		// Ajoute l'utilisateur au tableau des participants
+		participants[socket.id] = name;
+
+		io.sockets.emit('update_list_participants', participants);
+	});
+
+	// Déconnexion d'un utilisateur
+	socket.on('disconnect', function()
+	{
+		// Enlève l'utilisateur du tableau des participants
+		delete participants[socket.id];
+		
+		io.sockets.emit('update_list_participants', participants);
 	});
 
 	// Change l'adresse de l'avatar
@@ -106,6 +123,9 @@ io.sockets.on('connection', function(socket)
 		
 		// Transmet le message au module Donald (on lui passe aussi l'objet "io" pour qu'il puisse envoyer des messages)
 		donald.handleDonald(io, message);
+
+		// Transmet le message au module Donald (on lui passe aussi l'objet "io" pour qu'il puisse envoyer des messages)
+		//participant.handleParticipant(io, message);
 		
 		// Transmet le message au module BarrelRoll
 		barrelRoll.handleBarrelRoll(io, message);
