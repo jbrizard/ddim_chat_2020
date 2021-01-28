@@ -11,6 +11,7 @@ var daffy = require('./modules/daffy.js');
 var giphy = require('./modules/giphy.js');
 var donald = require('./modules/donald.js');
 var barrelRoll = require('./modules/barrelroll.js');
+var maths = require('./modules/maths.js');
 
 // Initialisation du serveur HTTP
 var app = express();
@@ -55,10 +56,10 @@ io.sockets.on('connection', function(socket)
 		donald.handleDonald(io, message);
 		// Transmet le message au module BarrelRoll (on lui passe aussi l'objet "io" pour qu'il puisse envoyer des messages)
 		barrelRoll.handleBarrelRoll(io, message);
-
+		// Transmet le message au module Maths (on lui passe aussi l'objet "io" pour qu'il puisse envoyer des messages)
+		maths.handleMaths(io,message);
 	});
 });
 
-	//giphy.initiateGiphy()
 // Lance le serveur sur le port 8080 (http://localhost:8080)
 server.listen(8080);

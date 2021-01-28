@@ -45,7 +45,7 @@ function receiveMessage(data)
 		'<div class="message">'
 			+ '<span class="user">' + data.name  + '</span> ' 
 			+ data.message 
-	     + '</div>'
-	)
+		+ '</div>'
+)
 	.scrollTop(function(){ return this.scrollHeight });  // scrolle en bas du conteneur
 }
