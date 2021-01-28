@@ -46,6 +46,10 @@ function receiveMessage(data)
 {
 	// Remplace les balises de formatage
 	data.message = replaceStyling(data.message);
+	if(!data.avatar)
+	{
+		data.avatar = '/modules/avatar/medias/skeleton.png';
+	}
 
 	$('#chat #messages').append(
 		'<div class="message">'

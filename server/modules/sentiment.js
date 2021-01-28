@@ -30,6 +30,7 @@ function sendMessage(message, io)
 	io.sockets.emit('new_message',
 	{
 		name:'Sentiment',
+		avatar : '/modules/avatar/medias/sentiment.jpg',
 		message: message
 	});
 }

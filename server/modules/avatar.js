@@ -52,7 +52,7 @@ function handleUploadAvatar(file, io, socket)
 	
 	if (fileType != 'image/jpeg' && fileType != 'image/png')
 	{
-		socket.emit('new_message', {name:'System', message:'Erreur : Format de fichier interdit'});
+		socket.emit('new_message', {name:'System', message:'Erreur : Format de fichier interdit', avatar:socket.avatar});
 		return;
 	}
 
@@ -73,7 +73,7 @@ function handleUploadAvatar(file, io, socket)
     
     if (error)
     {
-        socket.emit('new_message', {name:'System', message:'Erreur d\'envoi de fichier'});
+        socket.emit('new_message', {name:'System', message:'Erreur d\'envoi de fichier', avatar:socket.avatar});
     }
 }
 

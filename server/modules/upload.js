@@ -62,7 +62,8 @@ function sendMessage(fileName, io, socket, fileType)
         // Si oui on l'affiche directement
         io.sockets.emit('new_message',
 		{
-			name: socket.name,
+            name: socket.name,
+            avatar: socket.avatar,
 			message:'<img src="/modules/upload/files/'+fileName+'"/>'
 		});
     }
@@ -71,7 +72,8 @@ function sendMessage(fileName, io, socket, fileType)
         // Si non, on affiche un lien pour télécharger le fichier
         io.sockets.emit('new_message',
 		{
-			name: socket.name,
+            name: socket.name,
+            avatar: socket.avatar,
 			message:'<a href="/modules/upload/files/'+fileName+'">'+fileName+'</a>'
 		});
     }
