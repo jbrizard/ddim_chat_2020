@@ -26,6 +26,7 @@ var basket = require('./modules/basket.js');
 var painter = require('./modules/painter.js');
 var avatar = require('./modules/avatar.js')
 var trad = require('./modules/traduction.js');
+var news = require('./modules/news.js');
 
 // Initialisation du serveur HTTP
 var app = express();
@@ -128,6 +129,8 @@ io.sockets.on('connection', function(socket)
 		sentiment.handleSentiment(io, message, socket.name);
 		
 		twitch.handleTwitch(io, message, socket);
+		
+		news.handleNews(io, message);
 	});
 
 	//Réception d'un fichier

@@ -49,7 +49,6 @@ function onNewMessage(io, message)
 					{
 						//On récupère le json puis on le parse
 						json = JSON.parse(body);
-
 						if(json.success == false)
 						{
 							// On regarde d'abord si la recherche est réussie
@@ -58,7 +57,7 @@ function onNewMessage(io, message)
 						else
 							{
 							//On envoie notre prévision dans le chat
-							predict = "<section><img src=\'"+ json.current.weather_icons + "\' class=\'imgMeteo\'> <h3> A " + json.location.name + " il fait " + json.current.temperature + " °C. </h3> </section>";
+							predict = "<section class=\"meteo\"><img src=\'"+ json.current.weather_icons + "\' class=\'imgMeteo\'> <h3> A " + json.location.name + " il fait " + json.current.temperature + " °C. </h3> </section>";
 							sendMessage(io, predict);	
 							}		
 					});

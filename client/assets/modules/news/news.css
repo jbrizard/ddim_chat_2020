@@ -1,0 +1,26 @@
+section.news{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: center;
+    align-items: center;
+    color: black;
+    background-color: #c5c5c5;
+    border-radius: 10px;
+}
+
+img.news{
+    width: 100%;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+div.texteNews{
+    padding: 20px;
+    font-size: 14pt;
+}
+
+img.news:hover {
+    opacity: 60%;
+    transition: 0.5s;
+}
