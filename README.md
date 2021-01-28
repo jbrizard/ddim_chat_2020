@@ -18,7 +18,7 @@
 * Romain & Maxime : Blagues (pull request), Easter Egg (en cours)
 * Amanda & Flavien : Jukebox (en cours)
 * Louis G : Meteo (en cours)
-* Enzo & Hugo : Mise en forme texte (pull request), ?
+* Enzo & Hugo : Mise en forme texte (pull request),easter gif + fonds ?
 
 ## Idées de développement ##
 * Ajout de smileys

@@ -1,82 +1,78 @@
 ﻿<!DOCTYPE html>
 <!-- fichier créé par Léo et Jules -->
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-	
-		<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-		<script src="/socket.io/socket.io.js"></script>	<!-- fichier injecté par NodeJS -->
-		
-		<link rel="stylesheet" href="style.css" />
-		<link rel="stylesheet" href="/modules/daffy/daffy.css" />
-		
-		<link rel="stylesheet" href="/modules/donald/donald.css" />
-		<link rel="stylesheet" href="/modules/barrelroll/barrelroll.css" />
-		<link rel="stylesheet" href="/modules/emoji/emoji.css">
-		<link rel="stylesheet" href="/modules/upload/upload.css" />
-	</head>
-	
-	<body>
-		<h1>Le Chat !</h1>
-		
-		<div id="chat">
-			<div id="messages">
-				
-			</div>
 
-			<div class="emojis-input">
-				<input type="button"  id="emoji-input-faces" value="😀" />
-				<input type="button"  id="emoji-input-gestures" value="👍" />
-				<input type="button"  id="emoji-input-love" value="❤️" />
-				<input type="button"  id="emoji-input-animals" value="🐱" />
-				<input type="button"  id="emoji-input-plants" value="🍀" />
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-				<div class="emojis">
-					<div class="emojis-inside"></div>
-				</div>
+	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script> <!-- fichier injecté par NodeJS -->
+
+	<link rel="stylesheet" href="style.css" />
+	<link rel="stylesheet" href="/modules/daffy/daffy.css" />
+	<link rel="stylesheet" href="/modules/styling/styling.css" />
+	<link rel="stylesheet" href="/modules/donald/donald.css" />
+	<link rel="stylesheet" href="/modules/barrelroll/barrelroll.css" />
+	<link rel="stylesheet" href="/modules/emoji/emoji.css">
+	<link rel="stylesheet" href="/modules/upload/upload.css" />
+</head>
+
+<body>
+	<h1>Le Chat !</h1>
+
+	<div id="chat">
+		<div id="messages">
+
+		</div>
+
+		<div class="emojis-input">
+			<div id="boutonsTexte">
+				<input type="button" id="italic" value="I" />
+				<input type="button" id="bold" value="B" />
+				<input type="button" id="underline" value="U" />
 			</div>
-			
-			<div class="toolbar">
-				<div id="upload-files">
-					<input type="file" id="upload" name="upload" style="display:none" />
-					<input type="text" id="selectedfile" style="display:none" />
-					<input type="button" value="+" id="button-upload" onclick="getFile()" />
-				</div>
-				<input type="text" id="message-input"/>
-				<input type="button" id="send-message" value="Envoyer" />
-			</div>
-			
-			<div id="troisbouton">
-				<div class="column">
-					<input type="button" id="italic" value="italique" />
-				</div>
-	
-				<div class="column">
-					<input type="button" id="bold" value="gras" />
-				</div>
-	
-				<div class="column">
-					<input type="button" id="underline" value="souligne" />
-				</div>
+			<input type="button" id="emoji-input-faces" value="😀" />
+			<input type="button" id="emoji-input-gestures" value="👍" />
+			<input type="button" id="emoji-input-love" value="❤️" />
+			<input type="button" id="emoji-input-animals" value="🐱" />
+			<input type="button" id="emoji-input-plants" value="🍀" />
+
+			<div class="emojis">
+				<div class="emojis-inside"></div>
 			</div>
 		</div>
-		
-		<div id="features">
-			<h2>Fonctionnailtés</h2>
-			<ul>
-				<li><strong>Emojis :</strong> exprimez vos sentiments, déclarez votre flamme...</li>
-				<li><strong>Bot BG :</strong> demandez lui une blague, il se fera un plaisir de vous faire "rire"...</li>
-				<li><strong>Giphy :</strong> demandez un "gif" !</li>
-				<li><strong>Upload :</strong> partagez vos photos de vacances... ou vos supports de cours</li>
-				<li><strong>Styling :</strong> donnez du relief à vos messages !</li>
-			</ul>
+
+		<div class="toolbar">
+			<div id="upload-files">
+				<input type="file" id="upload" name="upload" style="display:none" />
+				<input type="text" id="selectedfile" style="display:none" />
+				<input type="button" value="+" id="button-upload" onclick="getFile()" />
+			</div>
+			<input type="text" id="message-input" />
+			<input type="button" id="send-message" value="Envoyer" />
 		</div>
-		
-		<script type="text/javascript" src="chat.js"></script>
-		<script type="text/javascript" src="/modules/barrelroll/barrelroll.js"></script>
-		<script type="text/javascript" src="/modules/emoji/emoji.js"></script>
-		<script type="text/javascript" src="modules/upload/upload.js"></script>
-		<script type="text/javascript" src="/modules/styling/styling.js"></script>
-	</body>
+	</div>
+
+	</div>
+
+	<div id="features">
+		<h2>Fonctionnailtés</h2>
+		<ul>
+			<li><strong>Emojis :</strong> exprimez vos sentiments, déclarez votre flamme...</li>
+			<li><strong>Bot BG :</strong> demandez lui une blague, il se fera un plaisir de vous faire "rire"...</li>
+			<li><strong>Giphy :</strong> demandez un "gif" !</li>
+			<li><strong>Upload :</strong> partagez vos photos de vacances... ou vos supports de cours</li>
+			<li><strong>Styling :</strong> donnez du relief à vos messages !</li>
+		</ul>
+	</div>
+
+	<script type="text/javascript" src="chat.js"></script>
+	<script type="text/javascript" src="/modules/barrelroll/barrelroll.js"></script>
+	<script type="text/javascript" src="/modules/emoji/emoji.js"></script>
+	<script type="text/javascript" src="modules/upload/upload.js"></script>
+	<script type="text/javascript" src="/modules/styling/styling.js"></script>
+	<script type="text/javascript" src="/modules/switchmode/switchmode.js"></script>
+</body>
+
 </html>
