@@ -10,43 +10,48 @@ const { tab_ques } = require("./question");
 module.exports =  {
 	handleQuizz: handleQuizz
 }
-let quizzState = 'Stopped';
-let quizzPlayers = [];
-let timer;
-let timerState = false;
-let tabQ;
-let tempsQuestion = 0;
-let questionState = "off";
-let reponseTab = {};
-let tabJoueurBonneRéponse = [];
-let tabPoints = {};
-let tabPointFinaux = [];
-let winner;
 
-//Socket.id > socket.name car pas de doublons
-function handleQuizz(io, message, name)
+let quizzState = 'Stopped';
+let quizzPlayers;
+let timer;
+let timerState;
+let tableQuestion;
+let timeQuestion;
+let questionState;
+let responseTable;
+let tableRightAnswerPlayer;
+let tablePoint;
+let tablePointFinal;
+
+
+/*
+ *Fonction englobant tout le module afin de pouvoir utiliser io, message et name partout.
+ */
+function handleQuizz(io, message, name, socket)
 {
-    if(message.includes("!StartQuizz"))
+    //verifie que le message contient la fonction pour lancer le quizz
+    if (message.includes("!Quizz"))
     {
 
-        if(quizzState == "Stopped"){
-            quizzState = "Waiting";
-            quizzPlayers.push(name);
-            timerTime = 5;
-            messageSplit = message.split(" ");
-            nbQuestionTotal = parseInt(messageSplit[1]) || 10;
-            if(nbQuestionTotal > tab_ques.length){
-                nbQuestionTotal = tab_ques.length;
-            }
-            tempsQuestion = parseInt(messageSplit[2]) || 10;
-            timer = setInterval(function(){quizzTimerStart()} , 1000);
-            io.sockets.emit('quizzStart', 
+        //Si aucun quizz n'est lancé, on envoie alors le formulaire de lancement du quizz
+        if (quizzState == "Stopped")
+        {
+            io.sockets.emit('quizzMessage', 
                 {
-                    name: name,
-                    message: name+ " a lancé le quizz ! Vous avez " + timerTime + " secondes pour taper '!JoinQuizz' afin de participer "
+                    message: 
+                    '<div class="message" style="display: flex;">'
+                    + '<label>Nombre de question'
+                    + '<input class="varQuizz" type="number" value="10" min="2" max="20"></input>'
+                    + '</label>'
+                    + '<label>Temps de reponse'
+                    + '<input class="varQuizz" type="number"  value="10" min="1" max="30" placeholder="Temps de réponse"></input>'
+                    + '</label>'
+                    + '<button id="startQuizzButton">Lancer le Quizz</button>'
+                    + '</div>'
                 }
-            );
+                )
         }
+        //Sinon, on indique a l'utilisateur que le quizz est deja en cours
         else
         {
             io.sockets.emit('quizzStart', 
@@ -56,13 +61,48 @@ function handleQuizz(io, message, name)
                 }
             )
         }
-
     }
 
+    /*
+     *Si l'utilisateur envoie le formulaire, alors on lance le quizz
+     */
+    socket.on('buttonClick', startQuizz);
+    function startQuizz(nbQ, tQ){
+        //Reset toute les variables importante.
+        quizzPlayers = [];
+        timerState = false;
+        tableQuestion;
+        timeQuestion = 0;
+        questionState = "off";
+        responseTable = {};
+        tableRightAnswerPlayer = [];
+        tablePoint = {};
+        tablePointFinal = [];
 
-    if(message.includes("!JoinQuizz"))
-    {
-        if(quizzState == 'Stopped' || !timerState){
+        //indique que le quizz est lancé
+        quizzState = "Waiting";
+        //Ajoute le créateur du quizz a la liste des joueurs
+        quizzPlayers.push(name);
+        timerTime = 15;
+        messageSplit = message.split(" ");
+        nbQuestionTotal = nbQ;
+        timeQuestion = tQ;
+        timer = setInterval(function(){quizzTimerStart()} , 1000);
+        //indique aux autres utilisateurs que le quizz est lancé
+        io.sockets.emit('quizzStart', 
+            {
+                name: name,
+                message: name+ " a lancé le quizz ! Vous avez " + timerTime + " secondes pour taper '!JoinQuizz' afin de participer "
+            }
+        );
+    }
+
+    //Si le message contient la commande pour rejoindre le quizz :
+    if (message.includes("!JoinQuizz"))
+    {  
+        //Si aucun quizz n'est lancé, un message d'erreur s'affiche
+        if (quizzState == 'Stopped' || !timerState)
+        {
             io.sockets.emit('joinQuizz', 
                 {
                     name: name,
@@ -71,7 +111,8 @@ function handleQuizz(io, message, name)
                 }
             );
         }
-        else if(quizzPlayers.indexOf(name) !== -1)
+        //Si l'utilisateur participe deja au quizz, il ne peux pas rejoindre une deuxieme fois
+        else if (quizzPlayers.indexOf(name) !== -1)
         {
             io.sockets.emit('joinQuizz', 
                 {
@@ -80,7 +121,9 @@ function handleQuizz(io, message, name)
                 }
             )
         }
-        else{
+        //Sinon il rejoint le quizz.
+        else
+        {
             quizzPlayers.push(name);
             io.sockets.emit('joinQuizz', 
                 {
@@ -91,12 +134,14 @@ function handleQuizz(io, message, name)
         }
     }
 
+    //Si je message contient A, B, C, D ou E :
     if (['A', 'B', 'C', 'D', 'E'].includes(message.toUpperCase()))
     {
-
-        if(questionState == "on"){
-            reponseTab[name] = message.toLowerCase();
-            io.sockets.emit('repond', 
+        //Si le quizz est lancé et qu'une question est en cours, alors la réponse de l'utilisateur est enregistré
+        if (quizzState == 'Playing' && questionState == "on")
+        {
+            responseTable[name] = message.toLowerCase();
+            io.sockets.emit('quizzMessage', 
                 {
                     message: "Vous avez répondu " + message.toUpperCase() + " a cette question. "
                 }
@@ -104,138 +149,231 @@ function handleQuizz(io, message, name)
         }
     }
 
-
-    function quizzTimerStart(){
-
+    /*
+     *Fonction permettant de laisser aux joueurs le temps de rejoindre le quizz.
+     */
+    function quizzTimerStart()
+    {
         timerTime--;
         timerState = true;
-
-        if(timerTime <= 0){
+        if (timerTime <= 0)
+        {
             timerState = false;
             clearInterval(timer);
             quizzState = "Playing";
-            InitQuestions();
+            initQuestions();
         }
     }
 
-    function InitQuestions(){
-
+    /*
+     *Fonction générant un tableau de question aléatoire de longueur defini parmis celle du tableau quand question.js, sans doublons.
+     */
+    function initQuestions()
+    {
         questionQuizz = [];
-        tabQ = [];
+        tableQuestion = [];
         let ind;
 
-        for(let i = 0; i < nbQuestionTotal; i++){
+        for (let i = 0; i < nbQuestionTotal; i++)
+        {
             ind = Math.round(Math.random()*tab_ques.length);
-            while(tabQ.indexOf(ind) !== -1){
+            while(tableQuestion.indexOf(ind) !== -1)
+            {
                 ind = Math.round(Math.random()*tab_ques.length);
             }
-            tabQ.push(ind);
+            tableQuestion.push(ind);
         }
-        for(let i = 0; i < tabQ.length; i++){
-            tabQ[i] = tab_ques[tabQ[i]];
+        for (let i = 0; i < tableQuestion.length; i++)
+        {
+            tableQuestion[i] = tab_ques[tableQuestion[i]];
         }
 
         nRound = 0;
-        for(let i = 0; i < quizzPlayers.length; i++){
-            tabPoints[quizzPlayers[i]] = 0;
+        for (let i = 0; i < quizzPlayers.length; i++)
+        {
+            tablePoint[quizzPlayers[i]] = 0;
         }
-        RoundQuestion();
-
-
+        roundQuestion();
     }
 
-    function RoundQuestion(){
+    /*
+     *Fonction permettant d'afficher la question a chaque round, et laissant le temps a l'utilisateur de répondre a la question, 
+     *si on arrive au dernier round, on passe a la fonction de fin de quizz
+     */
+    function roundQuestion(){
 
-        if(nRound < nbQuestionTotal){
-            DisplayQuestion(nRound);
+        if (nRound < nbQuestionTotal)
+        {
+            displayQuestion(nRound);
             questionState = "on";
-            reponseTab = [];
-            tabJoueurBonneRéponse = [];
+            responseTable = [];
+            tableRightAnswerPlayer = [];
 
-            timerTime = tempsQuestion;
+            timerTime = timeQuestion;
             timer = setInterval(function(){quizzTimerQuestion()}, 1000);
 
-            function quizzTimerQuestion(){
-                timerTime --;
-                if(timerTime == 0){
-                    questionState = "off";
-                    for(let i = 0; i < quizzPlayers.length; i++){
-                        if(reponseTab[quizzPlayers[i]] == tabQ[nRound].lettre.toLowerCase()){
-                            tabJoueurBonneRéponse.push(quizzPlayers[i]);
-                        }
-                    }
-                    for(let i = 0; i < tabJoueurBonneRéponse.length; i++){
-                        tabPoints[tabJoueurBonneRéponse[i]] += 1;
-                    }
-                    var test = [];
-                    test['truc'] = 't';
-                    io.sockets.emit('points', 
-                    {
-                        tab: tabPoints,
-                        tabJ: quizzPlayers
-                    }
-                    )
-                    if(tabJoueurBonneRéponse.length != 0 ){
-                        io.sockets.emit('reponse', 
-                        {
-                            message: "La bonne réponse était " + tabQ[nRound].lettre + ' ' + tabQ[nRound].bonnerep + ".",
-                            message2: "Le(s) joueur(s) : " + tabJoueurBonneRéponse + " a/ont obtenu 1 point pour avoir répondu correctement."
-                        }
-                        )
-                    }
-                    else{
-                        io.sockets.emit('reponse', 
-                        {
-                            message: "La bonne réponse était " + tabQ[nRound].bonnerep + ".",
-                            message2: "Personne n'as répondu correctement. Nullards"
-                        }
-                        )
-                    }
-                    nRound++;
-                    RoundQuestion();
-                    clearInterval(timer);
-                }
-                else{
-                    return false;
-                }
-            }
         }
-        else{
-           EndQuizz();
+        else
+        {
+        endQuizz();
         }
+    }
 
-
-
-        function DisplayQuestion(nRound){
-            io.sockets.emit('displayQuestion', 
-                {
-                    tab: tabQ,
-                    nRound: nRound,
-                }
-            );
-        }
-
-        function EndQuizz(){
-            for(let i = 0; i < quizzPlayers.length; i++){
-                tabPointFinaux.push(tabPoints[quizzPlayers[i]]);
-            }
-            quizzPlayers.forEach(joueur => {
-                if(tabPoints[joueur] >= Math.max(tabPointFinaux)){
-                    winner = joueur;
-                }
-            });
-            quizzState = "Stopped";
-            quizzPlayers = [];
-            tabPointFinaux = [];
-            nRound = 0;
-            io.sockets.emit('endQuizz', 
+    /*
+     *Actualise le timer qui laisse le temps aux joueurs de répondre, puis, si il est terminé, vérifie quel(s) joueurs a/ont obtenu(s) la bonne réponse pour incrémenter ses/leurs points
+     */
+    function quizzTimerQuestion()
+    {
+        timerTime --;
+        if (timerTime == 0)
+        {
+            questionState = "off";
+            for (let i = 0; i < quizzPlayers.length; i++)
             {
-                message: "Le quizz est terminé !",
-                message2: "&#10024; &#10024; Le gagnant est " + winner +  " ! Bravo. &#10024; &#10024;"
+                if (responseTable[quizzPlayers[i]] == tableQuestion[nRound].lettre.toLowerCase())
+                {
+                    tableRightAnswerPlayer.push(quizzPlayers[i]);
+                }
+            }
+            for (let i = 0; i < tableRightAnswerPlayer.length; i++)
+            {
+                tablePoint[tableRightAnswerPlayer[i]] += 1;
+            }
+            var test = [];
+            test['truc'] = 't';
+            io.sockets.emit('points', 
+            {
+                tab: tablePoint,
+                tabJ: quizzPlayers
+            }
+            )
+            //Affiche un message en fonction du nombre de joueurs ayant obtenu la bonne réponse
+            if (tableRightAnswerPlayer.length != 0 )
+            {
+                io.sockets.emit('quizzMessage', 
+                {
+                    message: 
+                    '<div class="message">'
+                    + "La bonne réponse était " + tableQuestion[nRound].lettre + ' ' + tableQuestion[nRound].bonnerep + "."
+                    + '</div>'
+                    + '<div class="message">'
+                    + "Le(s) joueur(s) : " + tableRightAnswerPlayer + " a/ont obtenu 1 point pour avoir répondu correctement."
+                    + '</div>'
+                }
+                )
+            }
+            else
+            {
+                io.sockets.emit('quizzMessage', 
+                {
+                    message: 
+                    '<div class="message">'
+                    + "La bonne réponse était " + tableQuestion[nRound].bonnerep + "."
+                    + '</div>'
+                    + '<div class="message">'
+                    + "Personne n'as répondu correctement. Nullards"
+                    + '</div>'
+                }
+                )
+            }
+            nRound++;
+            clearInterval(timer);
+            roundQuestion();
+        }
+        else
+        {
+            return false;
+        }
+    }
+    /*
+     * Affiche la question et les réponse possible dans le chat.
+     */
+    function displayQuestion(nRound)
+    {
+        io.sockets.emit('quizzMessage', 
+        {
+            message : '<div class="message question">'
+                + tableQuestion[nRound].question
+                + '</div>'
+                + '<div class="message reponse">'
+                + "A. " + tableQuestion[nRound].choix[0]
+                + '</div>'
+                + '<div class="message reponse">'
+                + "B. " + tableQuestion[nRound].choix[1]
+                + '</div>'
+                + '<div class="message reponse">'
+                + "C. " + tableQuestion[nRound].choix[2]
+                + '</div>'
+                + '<div class="message reponse">'
+                + "D. " + tableQuestion[nRound].choix[3]
+                + '</div>'
+                + '<div class="message reponse">'
+                + "E. " + tableQuestion[nRound].choix[4]
+                + '</div>'
+        }
+        );
+    }
+
+    /*
+     * Termine le quizz, calcul si il y a un gagnant et affiche le message correspondant.
+     */
+    function endQuizz()
+    {
+        let winners = [];
+        for (let i = 0; i < quizzPlayers.length; i++)
+        {
+            tablePointFinal.push(tablePoint[quizzPlayers[i]]);
+        }
+        quizzPlayers.forEach(joueur => 
+        {
+            if (tablePoint[joueur] >= Math.max(tablePointFinal) && Math.max(tablePointFinal) > 0 )
+            {
+                winners.push(joueur);
+            }
+        });
+            
+        quizzState = 'Stopped';
+        if (winners.length == 0)
+        {
+            io.sockets.emit('quizzMessage', 
+            {
+                message: 
+                    '<div class="message">'
+                    + "Le quizz est terminé !"
+                    + '</div>'
+                    + '<div class="gagnant">'
+                    + "&#10024; &#10024; Il n'y as pas de gagnant (faites un effort quand même...) &#10024; &#10024;"
+                    + '</div>'
             }
             )
         }
-
+        else if (winners.length == 1)
+        {
+            io.sockets.emit('quizzMessage', 
+            {
+                message: 
+                    '<div class="message">'
+                    + "Le quizz est terminé !"
+                    + '</div>'
+                    + '<div class="gagnant">'
+                    + "&#10024; &#10024; Le gagnant est " + winners.join(', ') +  " ! Bravo. &#10024; &#10024;"
+                    + '</div>'
+            }
+            )
+        }
+        else
+        {
+            io.sockets.emit('quizzMessage', 
+            {
+                message: 
+                    '<div class="message">'
+                    + "Le quizz est terminé !"
+                    + '</div>'
+                    + '<div class="gagnant">'
+                    + "&#10024; &#10024; Les gagnants sont " + winners.join(', ') +  " ! Bravo a eux. &#10024; &#10024;"
+                    + '</div>'
+            }
+            )
+        }
     }
-
 }

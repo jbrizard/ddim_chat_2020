@@ -9,6 +9,7 @@ var fs = require('fs');			// Accès au système de fichier
 // Chargement des modules perso
 var daffy = require('./modules/daffy.js');
 var quizz = require('./modules/quizz.js');
+var trad = require('./modules/traduction.js');
 
 // Initialisation du serveur HTTP
 var app = express();
@@ -47,9 +48,12 @@ io.sockets.on('connection', function(socket)
 		
 		// Transmet le message au module Daffy (on lui passe aussi l'objet "io" pour qu'il puisse envoyer des messages)
 		daffy.handleDaffy(io, message);
-		quizz.handleQuizz(io, message ,socket.name);
+		quizz.handleQuizz(io, message ,socket.name, socket);
+		trad.handleTranslate(io, message ,socket);
 
 	});
+
+	
 });
 
 // Lance le serveur sur le port 8080 (http://localhost:8080)
