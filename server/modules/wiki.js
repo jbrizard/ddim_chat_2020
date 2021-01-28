@@ -52,15 +52,17 @@ function handleWiki(io, message)
 
 function searchWiki(keyword, io)
 {
+	
 	let pageWikipedia = wiki({
 		apiUrl: 'https://fr.wikipedia.org/w/api.php'
 	})
 	.page(keyword);
-
+	
 	pageWikipedia
 	.then(page => page.summary())
 	.then(function(summary)
 	{
+		
 		if(!summary) 
 		{
 			summary = "Aucun résumé à afficher pour cette page.";
@@ -71,6 +73,11 @@ function searchWiki(keyword, io)
 			+ '<a class="encard" target="_blank" rel="noopener noreferrer" href="https://fr.wikipedia.org/wiki/' + keyword +'">'
 			+ '<h3 class="title">' + keyword + '</h3></a>'
 			+ '<span class="summ"><p>' + summary + '</p></span></div>'
+		, io);
+	})
+	.catch(function(){
+		sendMessage(
+			'Désolé, je n\'ai pas trouvé la page que vous cherchez ! Essayez une autre recherche ;)'
 		, io);
 	});
 }
