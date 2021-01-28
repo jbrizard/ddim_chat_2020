@@ -75,6 +75,7 @@ function sendMessage(io, message)
 			io.sockets.emit('new_message',
 			{
 				name:'BotMeteo',
+				avatar : '/modules/avatar/medias/meteo.jpg',
 				message: message
 			});
 	}, 700);

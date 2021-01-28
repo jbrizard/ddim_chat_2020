@@ -57,6 +57,7 @@ function sendMessage(io, message)
 		io.sockets.emit('new_message',
 			{
 				name:'jukebox',
+				avatar : '/modules/avatar/medias/jukebox.png',
 				message: message
 			});
 	}, 700);

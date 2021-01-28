@@ -77,6 +77,7 @@ function sendMessage(message, io)
 	io.sockets.emit('new_message',
 	{
 		name:'Wiki',
+		avatar : '/modules/avatar/medias/wiki.png',
 		message: message
 	});
 }

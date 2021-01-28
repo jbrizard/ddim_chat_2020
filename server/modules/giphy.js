@@ -34,6 +34,7 @@ function onGiphyResult(err, res)
     _io.sockets.emit('new_message',
     {
         name: 'Gif',
+		avatar : '/modules/avatar/medias/gif.png',
         message: '<img class="gif" src="'+url+'">'
     });
 }
