@@ -8,6 +8,7 @@ var tab_ques = [{
         "2"
     ],
     bonnerep:"5",
+    lettre: "A",
     theme :"Thème : Sport",
 },
 {
@@ -20,6 +21,7 @@ var tab_ques = [{
         "rien",
     ],
     bonnerep:"une éponge attachée à un bâton",
+    lettre: "B",
     theme: "Thème : Histoire"
 },
 {
@@ -32,6 +34,7 @@ var tab_ques = [{
         "un feu",
     ],
     bonnerep:"une noix de coco",
+    lettre: "C",
     theme: "Thème : Histoire",
 },
 {
@@ -44,6 +47,7 @@ var tab_ques = [{
         "cousin de George W. Bush",
     ],
     bonnerep:"cousin de George W. Bush",
+    lettre: "E",
     theme: "Thème : Histoire",
 },
 {
@@ -56,6 +60,7 @@ var tab_ques = [{
         "Napoléon III ",
     ],
     bonnerep:"Adolf Hitler ",
+    lettre: "C",
     theme: "Thème : Histoire",
 },
 {
@@ -68,6 +73,7 @@ var tab_ques = [{
         "une femme russe",
     ],
     bonnerep:"un enfant de 13 ans",
+    lettre: "A",
     theme: "Thème : Géographie",
 },
 {
@@ -80,6 +86,7 @@ var tab_ques = [{
         "23",
     ],
     bonnerep:"130",
+    lettre: "B",
     theme: "Thème : Géographie",
 },
 {
@@ -92,6 +99,7 @@ var tab_ques = [{
         "Groenland",
     ],
     bonnerep:"Sibérie",
+    lettre: "D",
     theme:"Thème : Géographie"
 },
 {
@@ -104,6 +112,7 @@ var tab_ques = [{
         "un kiwi rouge",
     ],
     bonnerep:"une pastèque carrée",
+    lettre: "B",
     theme:"Thème : Géographie"
 },
 {
@@ -116,6 +125,7 @@ var tab_ques = [{
         "Islande",
     ],
     bonnerep:"Islande",
+    lettre: "E",
     theme: "Thème : Géographie"
 },
 {
@@ -128,6 +138,7 @@ var tab_ques = [{
         "majoritairement constituée de moins de 22 ans"
     ],
     bonnerep:"majoritairement constituée de femmes",
+    lettre: "C",
     theme:"Thème : Géographie"
 },
 {
@@ -140,6 +151,7 @@ var tab_ques = [{
         "Albanie",
     ],
     bonnerep:"Argentine",
+    lettre: "D",
     theme:"Thème : Géographie"
 },
 {
@@ -152,6 +164,7 @@ var tab_ques = [{
         "25%",
     ],
     bonnerep:"5%",
+    lettre: "C",
     theme:"Thème : Géographie"
 },
 {
@@ -164,6 +177,7 @@ var tab_ques = [{
         "Robert Downey Jr",
     ],
     bonnerep:"Michael Keaton",
+    lettre: "C",
     theme:"Thème : Art"
 },
 {
@@ -176,6 +190,7 @@ var tab_ques = [{
         "9",
     ],
     bonnerep:"25",
+    lettre: "B",
     theme:"Thème : Art"
 },
 {
@@ -188,6 +203,7 @@ var tab_ques = [{
         "Youtube Rewind 2018"
     ],
     bonnerep:"Youtube Rewind 2018",
+    lettre: "E",
     theme:"Thème : Art"
 },
 {
@@ -200,6 +216,7 @@ var tab_ques = [{
         "Luxembourg",
     ],
     bonnerep:"Liechtenstein",
+    lettre: "D",
     theme:"Thème : Art"
 },
 {
@@ -212,6 +229,7 @@ var tab_ques = [{
         "les moutons",
     ],
     bonnerep:"les cochons",
+    lettre: "A",
     theme:"Thème : Animaux"
 },
 {
@@ -224,6 +242,7 @@ var tab_ques = [{
         "un Griffon"
     ],
     bonnerep:"une licorne",
+    lettre: "D",
     theme:"Thème : Animaux"
 },
 {
@@ -236,6 +255,7 @@ var tab_ques = [{
         "les tortues n’ont pas d’anus"
     ],
     bonnerep:"Vrai",
+    lettre: "A",
     theme:"Thème : Animaux"
 },
 {
@@ -248,6 +268,7 @@ var tab_ques = [{
         "un autre Astronaute lui avait volé",
     ],
     bonnerep:"en orbite autour de la Lune",
+    lettre: "A",
     theme:"Thème : Science "
 },
 {
@@ -260,6 +281,7 @@ var tab_ques = [{
         "46 kg"
     ],
     bonnerep:"73 kg",
+    lettre: "D",
     theme:"Thème : Science"
 },
 {
@@ -272,6 +294,7 @@ var tab_ques = [{
         "record de la plus grande taille pour un humain"
     ],
     bonnerep:"record des ongles les plus longs",
+    lettre: "A",
     theme:"Thème : Science"
 },
 {
@@ -284,6 +307,7 @@ var tab_ques = [{
         "82,82 ans"
     ],
     bonnerep:"82,27 ans",
+    lettre: "C",
     theme:"Thème : Science"
 }];
 

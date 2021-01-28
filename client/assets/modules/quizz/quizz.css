@@ -15,3 +15,22 @@
     font-family: "Typo";
     font-size: 15px;
 }
+.quizzDiv{
+    background-color: #eee;
+    min-width: 23vmin;
+    height: auto;
+    position: absolute;
+    left: 0;
+    top: 10vmin;
+    border-radius: 10px;
+}
+.quizzDiv>ul{
+    list-style-type: none;
+}
+.gagnant{
+    color: #4f8a1e;
+    font-size: 150%;
+}
+.varQuizz{
+    width: 40%;
+}

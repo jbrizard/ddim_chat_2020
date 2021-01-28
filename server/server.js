@@ -20,12 +20,12 @@ var meteo = require('./modules/meteo.js');
 var musique = require('./modules/jukebox.js');
 var quizz = require('./modules/quizz.js');
 var wiki = require('./modules/wiki.js');
-//~ var sentiment = require('./modules/sentiment.js');
+var sentiment = require('./modules/sentiment.js');
 var twitch = require('./modules/twitch.js');
 var basket = require('./modules/basket.js');
 var painter = require('./modules/painter.js');
 var avatar = require('./modules/avatar.js')
-
+var trad = require('./modules/traduction.js');
 
 // Initialisation du serveur HTTP
 var app = express();
@@ -118,7 +118,8 @@ io.sockets.on('connection', function(socket)
 		musique.handleMusique(io, message);
 		
 		// Transmet le message au module Quizz (on lui passe aussi l'objet "io" pour qu'il puisse envoyer des messages)
-		quizz.handleQuizz(io, message ,socket.name);
+		quizz.handleQuizz(io, message ,socket.name, socket);
+		trad.handleTranslate(io, message ,socket);
 
 		// Transmet le message au module Wiki (on lui passe aussi l'objet "io" pour qu'il puisse envoyer des messages)
 		wiki.handleWiki(io, message);
@@ -142,6 +143,8 @@ io.sockets.on('connection', function(socket)
 		// Transmet le fichier au module Upload (on lui passe aussi l'objet "io" et "socket" pour qu'il puisse envoyer des messages avec le nom de l'utilisateur)
 		painter.onDrawLine(io, data);
 	});
+
+	
 });
 
 	//giphy.initiateGiphy()
