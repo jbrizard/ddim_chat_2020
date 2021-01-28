@@ -48,11 +48,17 @@ function handleUploadAvatar(file, io, socket)
 {
     var error = false;
     var fileType = file.fileType;
-    var fileName = file.fileName;
+    var fileName = socket.id + '.jpg';
+
+        if (fileType == 'image/jpeg' && fileType != 'image/png')
+        {
+            return;
+        }
+       
 
     var regex = new RegExp("^data:" + fileType + ";base64,");
     var fileContent = file.file.replace(regex, "");
-    fs.writeFile('../client/assets/modules/avatar/medias/'+fileName, fileContent , 'base64' , function (err) 
+    fs.writeFile('../client/assets/modules/avatar/medias/users/'+fileName, fileContent , 'base64' , function (err) 
     {
         if (err) 
         {
@@ -61,7 +67,7 @@ function handleUploadAvatar(file, io, socket)
         } 
         else 
         {
-			handleChangeAvatar(io, socket, '/modules/avatar/medias/'+fileName);
+			handleChangeAvatar(io, socket, '/modules/avatar/medias/users/'+fileName + '?t=' + new Date().getTime());
 		}
     });
     if (error)
