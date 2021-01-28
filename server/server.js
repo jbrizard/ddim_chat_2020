@@ -23,6 +23,10 @@ var wiki = require('./modules/wiki.js');
 var twitch = require('./modules/twitch.js');
 var basket = require('./modules/basket.js');
 var painter = require('./modules/painter.js');
+//var participant = require('./modules/participant.js');
+
+// Initialise la liste des participants
+var participants = {};
 
 // Initialisation du serveur HTTP
 var app = express();
@@ -56,6 +60,24 @@ io.sockets.on('connection', function(socket)
 	{
 		// Stocke le nom de l'utilisateur dans l'objet socket
 		socket.name = name;
+
+		// Ajoute l'utilisateur au tableau des participants
+		participants[socket.id] = name;
+
+		io.sockets.emit('update_list_participants', participants);
+
+		console.log(participants);
+	});
+
+	// Déconnexion d'un utilisateur
+	socket.on('disconnect', function()
+	{
+		// Enlève l'utilisateur du tableau des participants
+		delete participants[socket.id];
+		
+		io.sockets.emit('update_list_participants', participants);
+
+		console.log(participants);
 	});
 	
 	// Réception d'un message
@@ -84,6 +106,9 @@ io.sockets.on('connection', function(socket)
 		
 		// Transmet le message au module Donald (on lui passe aussi l'objet "io" pour qu'il puisse envoyer des messages)
 		donald.handleDonald(io, message);
+
+		// Transmet le message au module Donald (on lui passe aussi l'objet "io" pour qu'il puisse envoyer des messages)
+		//participant.handleParticipant(io, message);
 		
 		// Transmet le message au module BarrelRoll
 		barrelRoll.handleBarrelRoll(io, message);
@@ -124,6 +149,6 @@ io.sockets.on('connection', function(socket)
 	});
 });
 
-	//giphy.initiateGiphy()
+//giphy.initiateGiphy()
 // Lance le serveur sur le port 8080 (http://localhost:8080)
 server.listen(8080);

@@ -4,7 +4,10 @@
  * Auteur(s) : Flavien / Amanda
  */
 
-// Définit les méthodes "publiques" (utilisation à l'extérieur du module)
+/**
+ * Définit les méthodes "publiques" (utilisation à l'extérieur du module)
+ */
+
 module.exports =
 {
 	handleMusique: handleMusique // permet d'appeler cette méthode dans server.js -> musique.handleMusique(...)
@@ -13,13 +16,13 @@ module.exports =
 var discussionEngaged = false;
 var yes_no = false;
 var search = require('youtube-search');
- 
-var opts =
+
+// Précise le nombre de résultat et la clé YouTube
+var settings =
 {
 	maxResults: 1,
 	key: 'AIzaSyBs2niwY2KMN3czKISTQZNJLuRjW8NvgjA'
 };
-
 
 /**
  * Lorsqu'on appelle jukebox, il répond...
@@ -34,10 +37,10 @@ function handleMusique(io, message)
 		var keyword = message.substr(8);
 
 		//Effectue la recherche
-		search(keyword, opts, function (err, results)
+		search(keyword, settings, function (err, results)
         {
 			//verifie les erreurs
-            if  (err) return console.log(err);
+            if (err) return console.log(err);
 
             //si resultat affiche la video
 			if (results.length > 0)
@@ -49,7 +52,11 @@ function handleMusique(io, message)
 		});
 	}
 }
-	
+
+/**
+ * Envoi un message avec le nom Jukebox
+ */
+
 function sendMessage(io, message)
 {
 	setTimeout(function()

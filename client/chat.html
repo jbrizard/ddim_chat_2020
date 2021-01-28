@@ -21,102 +21,111 @@
 		<link rel="stylesheet" href="/modules/painter/painter.css" />
 	</head>
 	
-	<body>
-		<h1>Le Chat !</h1>
-		
-		<!-- module basket -->
-		<div id="basket">
-			<div id="others-mouse-pos"></div>
-		
-			<div class="ball"></div>
-			
-			<div id="basket-scores">
-				<div id="current-player"></div>
-				<div id="stats">
-					<strong>Meilleur joueur : <span class="best-player">???</span></strong>
-				</div>
-			</div>
+    <body>
+        <h1>Le Chat !</h1>
 
-			<audio id="basket-bounce" src="modules/basket/bounce.mp3" autostart="0" />
-		</div>
-		<!-- fin module basket -->
-		
-		<div id="chat">
-			<div id="messages">
-				
-			</div>
+        <!-- module basket -->
+        <div id="basket">
+            <div id="others-mouse-pos"></div>
 
-			<div class="emojis-input">
-				<input type="button"  id="emoji-input-faces" value="😀" />
-				<input type="button"  id="emoji-input-gestures" value="👍" />
-				<input type="button"  id="emoji-input-love" value="❤️" />
-				<input type="button"  id="emoji-input-animals" value="🐱" />
-				<input type="button"  id="emoji-input-plants" value="🍀" />
+            <div class="ball"></div>
 
-				<div class="emojis">
-					<div class="emojis-inside"></div>
-				</div>
-			</div>
-			
-			<div class="toolbar">
-				<div id="upload-files">
-					<input type="file" id="upload" name="upload" style="display:none" />
-					<input type="text" id="selectedfile" style="display:none" />
-					<input type="button" value="+" id="button-upload" onclick="getFile()" />
-				</div>
-				<input type="text" id="message-input" focus/>
-				<input type="button" id="send-message" value="Envoyer" />
-			</div>
-			
-			<div id="troisbouton">
-				<div class="column">
-					<input type="button" id="italic" value="italique" />
-				</div>
-	
-				<div class="column">
-					<input type="button" id="bold" value="gras" />
-				</div>
-	
-				<div class="column">
-					<input type="button" id="underline" value="souligne" />
-				</div>
-			</div>
-		</div>
-		
-		<div id="features">
-			<h2>Plugins</h2>
-			<ul>
-				<li><strong>Emojis :</strong> exprime tes sentiments, déclare ta flamme...</li>
-				<li><strong>Bot BG :</strong> demande lui une "joke", il se fera un plaisir de te faire "rire"...</li>
-				<li><strong>Giphy :</strong> anime tes messages avec "gif MOTCLE"</li>
-				<li><strong>Upload :</strong> partage tes photos de vacances... ou tes supports de cours</li>
-				<li><strong>Styling :</strong> donne du relief à tes messages !</li>
-				<li><strong>Jukebox :</strong> met du bon son avec "jukebox MOTCLE"</li>
-				<li><strong>Météo :</strong> "!meteo VILLE" te dit comme il fait (pas) beau chez toi...</li>
-				<li><strong>Wiki :</strong> apprends des trucs avec "wiki MOTCLE"</li>
-				<li><strong>Basket :</strong> bat le record de touche sans que le ballon touche le sol</li>
-				<li><strong>Painter :</strong> montre nous ta créativité...</li>
-			</ul>
-		</div>
-		
-		<div id="brushes">
-			<div class="brush black" data-color="black"></div>
-			<div class="brush red" data-color="red"></div>
-			<div class="brush yellow" data-color="yellow"></div>
-			<div class="nobrush"></div>
-		</div>
-		
-		<canvas id="paint"></canvas>
-		
-		<script type="text/javascript" src="chat.js"></script>
-		<script type="text/javascript" src="/modules/barrelroll/barrelroll.js"></script>
-		<script type="text/javascript" src="/modules/emoji/emoji.js"></script>
-		<script type="text/javascript" src="modules/upload/upload.js"></script>
-		<script type="text/javascript" src="/modules/styling/styling.js"></script>
-		<script type="text/javascript" src="/modules/quizz/quizz.js"></script>
-		<script src="https://embed.twitch.tv/embed/v1.js"></script>
-		<script type="text/javascript" src="modules/twitch/twitch.js"></script>
-		<script type="text/javascript" src="modules/basket/basket.js"></script>
-		<script type="text/javascript" src="modules/painter/painter.js"></script>
-	</body>
+            <div id="basket-scores">
+                <div id="current-player"></div>
+                <div id="stats">
+                    <strong>Meilleur joueur : <span class="best-player">???</span></strong>
+                </div>
+            </div>
+
+            <audio id="basket-bounce" src="modules/basket/bounce.mp3" autostart="0" />
+        </div>
+        <!-- fin module basket -->
+
+        <!-- module participants -->
+        <div class="list-participants">
+            <h2>Participants</h2>
+            <div id="participants-online">
+            </div>
+        </div>
+        <!-- fin module participants -->
+
+        <div id="chat">
+            <div id="messages">
+
+            </div>
+
+            <div class="emojis-input">
+                <input type="button" id="emoji-input-faces" value="😀" />
+                <input type="button" id="emoji-input-gestures" value="👍" />
+                <input type="button" id="emoji-input-love" value="❤️" />
+                <input type="button" id="emoji-input-animals" value="🐱" />
+                <input type="button" id="emoji-input-plants" value="🍀" />
+
+                <div class="emojis">
+                    <div class="emojis-inside"></div>
+                </div>
+            </div>
+
+            <div class="toolbar">
+                <div id="upload-files">
+                    <input type="file" id="upload" name="upload" style="display:none" />
+                    <input type="text" id="selectedfile" style="display:none" />
+                    <input type="button" value="+" id="button-upload" onclick="getFile()" />
+                </div>
+                <input type="text" id="message-input" focus />
+                <input type="button" id="send-message" value="Envoyer" />
+            </div>
+
+            <div id="troisbouton">
+                <div class="column">
+                    <input type="button" id="italic" value="italique" />
+                </div>
+
+                <div class="column">
+                    <input type="button" id="bold" value="gras" />
+                </div>
+
+                <div class="column">
+                    <input type="button" id="underline" value="souligne" />
+                </div>
+            </div>
+        </div>
+
+
+        <div id="features">
+            <h2>Plugins</h2>
+            <ul>
+                <li><strong>Emojis :</strong> exprime tes sentiments, déclare ta flamme...</li>
+                <li><strong>Bot BG :</strong> demande lui une "joke", il se fera un plaisir de te faire "rire"...</li>
+                <li><strong>Giphy :</strong> anime tes messages avec "gif MOTCLE"</li>
+                <li><strong>Upload :</strong> partage tes photos de vacances... ou tes supports de cours</li>
+                <li><strong>Styling :</strong> donne du relief à tes messages !</li>
+                <li><strong>Jukebox :</strong> met du bon son avec "jukebox MOTCLE"</li>
+                <li><strong>Météo :</strong> "!meteo VILLE" te dit comme il fait (pas) beau chez toi...</li>
+                <li><strong>Wiki :</strong> apprends des trucs avec "wiki MOTCLE"</li>
+                <li><strong>Basket :</strong> bat le record de touche sans que le ballon touche le sol</li>
+                <li><strong>Painter :</strong> montre nous ta créativité...</li>
+            </ul>
+        </div>
+
+        <div id="brushes">
+            <div class="brush black" data-color="black"></div>
+            <div class="brush red" data-color="red"></div>
+            <div class="brush yellow" data-color="yellow"></div>
+            <div class="nobrush"></div>
+        </div>
+
+        <canvas id="paint"></canvas>
+
+        <script type="text/javascript" src="chat.js"></script>
+        <script type="text/javascript" src="/modules/barrelroll/barrelroll.js"></script>
+        <script type="text/javascript" src="/modules/emoji/emoji.js"></script>
+        <script type="text/javascript" src="modules/upload/upload.js"></script>
+        <script type="text/javascript" src="/modules/styling/styling.js"></script>
+        <script type="text/javascript" src="/modules/quizz/quizz.js"></script>
+        <script src="https://embed.twitch.tv/embed/v1.js"></script>
+        <script type="text/javascript" src="modules/twitch/twitch.js"></script>
+        <script type="text/javascript" src="modules/basket/basket.js"></script>
+        <script type="text/javascript" src="modules/painter/painter.js"></script>
+    </body>
 </html>

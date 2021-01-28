@@ -151,11 +151,34 @@ h1 {
 	background-color: lightgreen;
 
 }
+.list-participants
+{
+	margin-left: 5px;
+	position: fixed;
+	width: 10%;
+	height: auto;
+	background: #fff;
+	border-bottom-right-radius: 12px;
+	border-bottom-left-radius: 12px;
+	text-align: left;
+	font-size: 12px;
+	padding: 20px 15px;
+	color: green;
+}
+.list-participants h2
+{
+	text-align: center;
+}
+
+.list-participants img {
+		width:15px;
+		margin-right:5px;
+}
 
 #troisbouton {
 	margin-top: 5px;
 
-
+}
 /* STYLE WIKI.JS */
 
 .article {

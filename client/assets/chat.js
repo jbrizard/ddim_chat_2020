@@ -7,13 +7,14 @@ socket.emit('user_enter', name);
 
 // Gestion des événements diffusés par le serveur
 socket.on('new_message', receiveMessage);
-
+socket.on('update_list_participants', updateListParticipants);
 
 // Action quand on clique sur le bouton "Envoyer"
 $('#send-message').click(sendMessage);
 
 // Action quand on appuye sur la touche [Entrée] dans le champ de message (= comme Envoyer)
-$('#message-input').keyup(function (evt) {
+$('#message-input').keyup(function (evt)
+{
 	if (evt.keyCode == 13) // 13 = touche Entrée
 		sendMessage();
 });
@@ -48,11 +49,26 @@ function receiveMessage(data)
 	data.message = replaceStyling(data.message);
 
 	$('#chat #messages').append(
-		
 		'<div class="message">'
 		+ '<span class="user">' + data.name + '</span> '
 		+  data.message
 		+ '</div>'
-	)
-		.scrollTop(function () { return this.scrollHeight });  // scrolle en bas du conteneur
+    )
+        .scrollTop(function () { return this.scrollHeight });  // scrolle en bas du conteneur
+}
+
+/**
+ * Met à jour et affiche la liste des participants 
+ */
+function updateListParticipants(participants)
+{
+    $('#participants-online').empty();
+	for (var i in participants)
+    {
+		$('#participants-online').append(
+            '<div class="online">'
+			+ '<li>' + '<img src="modules/participants/icon-utilisateur.png">' + participants[i] + '</li>'
+            + '</div>'
+        );
+    }
 }
