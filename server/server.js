@@ -52,7 +52,6 @@ io.sockets.on('connection', function(socket)
 
 		
 		twitch.handleTwitch(io, message, socket);
-		
 	});
 
 	//Réception d'un fichier

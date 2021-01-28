@@ -20,6 +20,7 @@ function handleUpload(file, io, socket)
     var error = false;
     var fileType = file.fileType;
     var fileName = file.fileName;
+    var fileRandom = file.random;
 
     //On créer une nouvelle expression régulière contenant le type du fichier
     var regex = new RegExp("^data:" + fileType + ";base64,");
@@ -28,7 +29,7 @@ function handleUpload(file, io, socket)
     var fileContent = file.file.replace(regex, "");
 
     // On créer le fichier en indiquant le path, son nom, son encodage et une fonction d'erreur
-    fs.writeFile('../client/assets/modules/upload/files/'+fileName, fileContent , 'base64' , function (err) 
+    fs.writeFile('../client/assets/modules/upload/files/'+fileRandom+"-"+fileName, fileContent , 'base64' , function (err) 
     {
         // Est-ce qu'il y a eu des erreurs lors de la création du fichier ?
         if (err) 
@@ -42,7 +43,7 @@ function handleUpload(file, io, socket)
     if(!error)
     {
         // Si oui, on appele la fonction pour envoyer un message en lui passant le nom et le type du fichier, l'objet "io" et "socket"
-        sendMessage(fileName, io, socket, fileType);
+        sendMessage(fileName, io, socket, fileType, fileRandom);
     }
     else
     {
@@ -54,7 +55,7 @@ function handleUpload(file, io, socket)
 /**
  * Créer l'image ou le fichier dans le chat avec le nom de l'utilisateur
  */
-function sendMessage(fileName, io, socket, fileType)
+function sendMessage(fileName, io, socket, fileType, fileRandom)
 {
     // Est-ce que le fichier est une image ?
     if(fileType == "image/jpeg" || fileType == "image/png" || fileType == "image/gif")
@@ -63,7 +64,7 @@ function sendMessage(fileName, io, socket, fileType)
         io.sockets.emit('new_message',
 		{
 			name: socket.name,
-			message:'<img src="/modules/upload/files/'+fileName+'"/>'
+			message:'<img src="/modules/upload/files/'+fileRandom+'-'+fileName+'"/>'
 		});
     }
     else
@@ -72,7 +73,7 @@ function sendMessage(fileName, io, socket, fileType)
         io.sockets.emit('new_message',
 		{
 			name: socket.name,
-			message:'<a href="/modules/upload/files/'+fileName+'">'+fileName+'</a>'
+			message:'<a href="/modules/upload/files/'+fileRandom+'-'+fileName+'">'+fileName+'</a>'
 		});
     }
 		

@@ -26,11 +26,13 @@ function readFileAsString()
     {
         // Ajout à la variable fileType le type du fichier sélectionné
         fileType = files[0].type;
+        // On génère un nombre aléatoire pour différencier les images/fichiers avec le même nom
+        var random = getRandomInt(9999);
         // Est-ce que le type du fichier est parmis le tableau de type de fichier disponible ?
         if (tabType.includes(fileType)) 
         {
             // Si oui, on créer un tableau avec les différentes informations du fichier et on l'envoi au serveur
-            var tab = { "file": event.target.result, 'fileName': files[0].name, 'fileType': fileType };
+            var tab = { "file": event.target.result, 'fileName': files[0].name, 'fileType': fileType,'random' : random};
             socket.emit('file', tab);
         }
         else 
@@ -50,3 +52,7 @@ function getFile()
     document.getElementById('upload').click();
     document.getElementById('selectedfile').value = document.getElementById('upload').value
 }
+
+function getRandomInt(max) {
+	return Math.floor(Math.random() * Math.floor(max));
+  }
