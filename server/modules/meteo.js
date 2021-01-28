@@ -49,8 +49,6 @@ function onNewMessage(io, message)
 					{
 						//On récupère le json puis on le parse
 						json = JSON.parse(body);
-						console.log(json);
-
 						if(json.success == false)
 						{
 							// On regarde d'abord si la recherche est réussie
