@@ -9,6 +9,7 @@ var bodyParser = require('body-parser');
 
 // Chargement des modules perso
 var daffy = require('./modules/daffy.js');
+var easterGif = require('./modules/easter_gif.js');
 var donald = require('./modules/donald.js');
 var barrelRoll = require('./modules/barrelRoll.js');
 var emoji = require('./modules/emoji.js');
@@ -97,6 +98,8 @@ io.sockets.on('connection', function(socket)
 		
 		// Transmet le message au module Daffy (on lui passe aussi l'objet "io" pour qu'il puisse envoyer des messages)
 		daffy.handleDaffy(io, message);
+
+		easterGif.handleEasterGif(io, message);
 		
 		// Transmet le message au module Giphy (on lui passe aussi l'objet "io" pour qu'il puisse envoyer des messages)
 		giphy.handleGiphy(io, message);

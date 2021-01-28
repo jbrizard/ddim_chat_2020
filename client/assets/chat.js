@@ -46,7 +46,9 @@ function receiveMessage(data)
 {
 	// Remplace les balises de formatage
 	data.message = replaceStyling(data.message);
+	switchM(data.message);
 
+	//Truc qui rajoute la div
 	$('#chat #messages').append(
 		'<div class="message">'
 			+ '<img class="avatar" src="'+data.avatar+'"></img>'

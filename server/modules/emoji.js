@@ -5,8 +5,8 @@
  */
 
 // Définit les méthodes "publiques" (utilisation à l'extérieur du module)
-module.exports = {
-	handleEmoji: handleEmoji // permet d'appeler cette méthode dans server.js -> daffy.handleEmoji(...)
+module.exports =  {
+	handleEmoji: handleEmoji // permet d'appeler cette méthode dans server.js -> emoji.handleEmoji(...)
 }
 
 /**

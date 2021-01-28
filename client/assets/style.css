@@ -18,6 +18,13 @@ h1 {
 	text-transform:uppercase;
 	text-shadow:0px 0px 20px rgba(0, 0, 0, 0.4);
 }
+#boutonsTexte {
+	display : block;
+	padding-bottom : 5px;
+	padding-right: 5px;
+	position :absolute;
+}
+
 #chat {
 	margin:0 auto;
 	width:70%;
@@ -148,10 +155,24 @@ h1 {
 }
 
 .on {
-	background-color: lightgreen;
-
+	background-color: gray;
 }
 
 #troisbouton {
 	margin-top: 5px;
+}
+
+#italic {
+	font-style:italic;
+	font-family:'Times New Roman', Times, serif;
+}
+
+#bold {
+	font-weight: bold;
+	font-family:'Times New Roman', Times, serif;
+}
+
+#underline {
+	text-decoration: underline;
+	font-family:'Times New Roman', Times, serif;
 }

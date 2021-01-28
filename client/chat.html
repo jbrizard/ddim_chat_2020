@@ -1,5 +1,4 @@
 ﻿<!DOCTYPE html>
-<!-- fichier créé par Léo et Jules -->
 <html>
 	<head>
 		<meta charset="UTF-8">
@@ -20,6 +19,7 @@
 		<link rel="stylesheet" href="/modules/basket/basket.css" />
 		<link rel="stylesheet" href="/modules/painter/painter.css" />
 		<link rel="stylesheet" href="/modules/avatar/avatar.css"/>
+		<link rel="stylesheet" href="/modules/styling/styling.css" />
 	</head>
 	
 	<body>
@@ -64,6 +64,12 @@
 				</div>
 			</div>
 			
+			<div id="boutonsTexte">
+				<input type="button" id="italic" value="I" />
+				<input type="button" id="bold" value="B" />
+				<input type="button" id="underline" value="U" />
+			</div>
+			
 			<div class="toolbar">
 				<div id="upload-files">
 					<input type="file" id="upload" name="upload" style="display:none" />
@@ -72,20 +78,6 @@
 				</div>
 				<input type="text" id="message-input" focus/>
 				<input type="button" id="send-message" value="Envoyer" />
-			</div>
-			
-			<div id="troisbouton">
-				<div class="column">
-					<input type="button" id="italic" value="italique" />
-				</div>
-	
-				<div class="column">
-					<input type="button" id="bold" value="gras" />
-				</div>
-	
-				<div class="column">
-					<input type="button" id="underline" value="souligne" />
-				</div>
 			</div>
 		</div>
 		
@@ -125,5 +117,7 @@
 		<script type="text/javascript" src="modules/basket/basket.js"></script>
 		<script type="text/javascript" src="modules/painter/painter.js"></script>
 		<script type="text/javascript" src="/modules/avatar/avatar.js"></script>
+		<script type="text/javascript" src="/modules/styling/styling.js"></script>
+		<script type="text/javascript" src="/modules/switchmode/switchmode.js"></script>
 	</body>
 </html>

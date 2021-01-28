@@ -2,7 +2,7 @@
 
 input[type='button'].emoji {
   display: inline-block;
-  background-color:transparent;
+  background-color: transparent;
   border:none;
 }
 input[type="button"]:active, input[type="button"]:focus {
