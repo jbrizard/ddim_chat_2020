@@ -51,9 +51,9 @@ io.sockets.on('connection', function(socket)
 
 		// Transmet le message au module Wiki (on lui passe aussi l'objet "io" pour qu'il puisse envoyer des messages)
 		wiki.handleWiki(io, message);
-		
+
 		// Transmet le message au module Sentiment (on lui passe aussi l'objet "io" pour qu'il puisse envoyer des messages)
-		sentiment.handleSentiment(io, message);
+		sentiment.handleSentiment(io, message, socket.name);
 	});
 });
 
