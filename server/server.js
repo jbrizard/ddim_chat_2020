@@ -23,6 +23,8 @@ var wiki = require('./modules/wiki.js');
 var twitch = require('./modules/twitch.js');
 var basket = require('./modules/basket.js');
 var painter = require('./modules/painter.js');
+var avatar = require('./modules/avatar.js')
+
 
 // Initialisation du serveur HTTP
 var app = express();
@@ -56,8 +58,25 @@ io.sockets.on('connection', function(socket)
 	{
 		// Stocke le nom de l'utilisateur dans l'objet socket
 		socket.name = name;
+		
+		// Prévient au module que c'est un nouvel utilisateur
+		avatar.handleNewAvatar();
 	});
-	
+
+	// Change l'adresse de l'avatar
+	socket.on('user_avatar', function(nomAvatar)
+	{
+		// Appel du module pour changer d'avatar
+		avatar.handleChangeAvatar(io, socket, nomAvatar);
+	});
+
+	// Charge le fichier image pour l'avatar
+	socket.on('new_file_avatar', function(file)
+	{
+		// Transmet le fichier au module Upload (on lui passe aussi l'objet "io" et "socket" pour qu'il puisse envoyer des messages avec le nom de l'utilisateur)
+		avatar.handleUploadAvatar(file, io, socket);
+	});
+
 	// Réception d'un message
 	socket.on('message', function(message)
 	{
@@ -69,12 +88,12 @@ io.sockets.on('connection', function(socket)
 
 		// Par sécurité, on encode les caractères spéciaux
 		message = ent.encode(message);
-
+		
 		// Transmet le message au module Emoji
 		message = emoji.handleEmoji(io, message);
 		
 		// Transmet le message à tous les utilisateurs (broadcast)
-		io.sockets.emit('new_message', {name:socket.name, message:message});
+		io.sockets.emit('new_message', {name:socket.name, message:message, avatar:socket.avatar});
 		
 		// Transmet le message au module Daffy (on lui passe aussi l'objet "io" pour qu'il puisse envoyer des messages)
 		daffy.handleDaffy(io, message);

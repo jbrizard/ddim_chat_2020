@@ -48,11 +48,11 @@ function receiveMessage(data)
 	data.message = replaceStyling(data.message);
 
 	$('#chat #messages').append(
-		
 		'<div class="message">'
-		+ '<span class="user">' + data.name + '</span> '
-		+  data.message
-		+ '</div>'
+			+ '<img class="avatar" src="'+data.avatar+'"></img>'
+			+ '<span class="user">' + data.name  + '</span> ' 
+			+ data.message 
+	     + '</div>'
 	)
 		.scrollTop(function () { return this.scrollHeight });  // scrolle en bas du conteneur
 }

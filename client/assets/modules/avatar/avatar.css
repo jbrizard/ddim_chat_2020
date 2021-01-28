@@ -1,0 +1,52 @@
+/* Module Avatar */
+
+.avatar{
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    border-radius: 5px;
+    background:white;
+    object-fit: cover; 
+}
+
+.avatars.active{
+    display: block;
+    position:relative;
+}
+
+.avatars-inside.active {
+    display: block;
+    position: absolute;
+    background: #fff;
+    border: solid 1px #aaa;
+    box-shadow: 1px 1px 3px -1px rgba(0, 0, 0, .3);
+    border-radius: 5px;
+    padding: 5px;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width:300px;
+}
+
+.avatar-inside{
+    width: 50px;
+    margin: 10px;
+    border: solid 0.1px rgba(128, 128, 128, 0.4);
+    cursor: pointer;
+}
+
+.avatars-input{
+    flex-direction: row-reverse;
+    display: flex;
+    margin-top: -20px;
+    margin-bottom: 5px;
+} 
+
+.avatars.active.first-avatar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .75);
+}

@@ -44,6 +44,7 @@ function sendMessage(io, message)
 			io.sockets.emit('new_message',
 			{
 				name:'Donald',
+				avatar: '/modules/avatar/medias/donald.png',
 				message: message
 			});
 	}, 700);
