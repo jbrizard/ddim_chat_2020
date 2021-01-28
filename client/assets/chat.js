@@ -46,9 +46,10 @@ function receiveMessage(data)
 {
 	// Remplace les balises de formatage
 	data.message = replaceStyling(data.message);
-	switchM(data.message);
+	
+	//switchM(data.message);
 
-	//Truc qui rajoute la div
+	// Ajoute le message au chat
 	$('#chat #messages').append(
 		'<div class="message">'
 			+ '<img class="avatar" src="'+data.avatar+'"></img>'
@@ -56,5 +57,5 @@ function receiveMessage(data)
 			+ data.message 
 	     + '</div>'
 	)
-		.scrollTop(function () { return this.scrollHeight });  // scrolle en bas du conteneur
+	.scrollTop(function () { return this.scrollHeight });  // scrolle en bas du conteneur
 }

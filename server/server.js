@@ -27,6 +27,7 @@ var painter = require('./modules/painter.js');
 var avatar = require('./modules/avatar.js')
 var trad = require('./modules/traduction.js');
 var news = require('./modules/news.js');
+var maths = require('./modules/maths.js');
 
 // Initialisation du serveur HTTP
 var app = express();
@@ -131,6 +132,9 @@ io.sockets.on('connection', function(socket)
 		twitch.handleTwitch(io, message, socket);
 		
 		news.handleNews(io, message);
+		
+		// Transmet le message au module Maths (on lui passe aussi l'objet "io" pour qu'il puisse envoyer des messages)
+		maths.handleMaths(io,message);
 	});
 
 	//Réception d'un fichier
@@ -150,6 +154,5 @@ io.sockets.on('connection', function(socket)
 	
 });
 
-	//giphy.initiateGiphy()
 // Lance le serveur sur le port 8080 (http://localhost:8080)
 server.listen(8080);
