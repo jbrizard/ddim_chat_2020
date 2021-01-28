@@ -52,21 +52,32 @@ function handleWiki(io, message)
 
 function searchWiki(keyword, io)
 {
+	
 	let pageWikipedia = wiki({
 		apiUrl: 'https://fr.wikipedia.org/w/api.php'
 	})
 	.page(keyword);
-
+	
 	pageWikipedia
 	.then(page => page.summary())
 	.then(function(summary)
 	{
+		
+		if(!summary) 
+		{
+			summary = "Aucun résumé à afficher pour cette page.";
+		}
 		sendMessage(
 			'Voici un lien vers la page Wikipedia de ' + keyword + ' :'
 			+ '<div class="article">'
 			+ '<a class="encard" target="_blank" rel="noopener noreferrer" href="https://fr.wikipedia.org/wiki/' + keyword +'">'
-			+ '<h3 class="title">' + keyword + '</h3>'
-			+ '<span class="summ"><p>' + summary + '</p></span></a></div>'
+			+ '<h3 class="title">' + keyword + '</h3></a>'
+			+ '<span class="summ"><p>' + summary + '</p></span></div>'
+		, io);
+	})
+	.catch(function(){
+		sendMessage(
+			'Désolé, je n\'ai pas trouvé la page que vous cherchez ! Essayez une autre recherche ;)'
 		, io);
 	});
 }
@@ -77,6 +88,7 @@ function sendMessage(message, io)
 	io.sockets.emit('new_message',
 	{
 		name:'Wiki',
-		message: message
+		message: message,
+		avatar: 'modules/wiki/avatar.png'
 	});
 }
