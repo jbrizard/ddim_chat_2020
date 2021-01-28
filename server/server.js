@@ -32,6 +32,8 @@ var maths = require('./modules/maths.js');
 // Initialise la liste des participants
 var participants = {};
 
+var easter = require('./modules/easter.js');
+
 // Initialisation du serveur HTTP
 var app = express();
 var server = http.createServer(app);
@@ -155,6 +157,9 @@ io.sockets.on('connection', function(socket)
 		
 		// Transmet le message au module Maths (on lui passe aussi l'objet "io" pour qu'il puisse envoyer des messages)
 		maths.handleMaths(io,message);
+		
+		// Transmet le message au module Easter (on lui passe aussi l'objet "io" pour qu'il puisse envoyer des messages)
+		easter.handleEaster(io,message);
 	});
 
 	//Réception d'un fichier
@@ -170,8 +175,17 @@ io.sockets.on('connection', function(socket)
 		// Transmet le fichier au module Upload (on lui passe aussi l'objet "io" et "socket" pour qu'il puisse envoyer des messages avec le nom de l'utilisateur)
 		painter.onDrawLine(io, data);
 	});
-
 	
+	// On reçoit l'évènement : quelqu'un à trouver le cercle
+	socket.on('easter_end', function()
+	{
+		// On transmet le message à tout les utilisateurs
+		io.sockets.emit('new_message', {name:'Egg, Mister Egg', message:'easter egg trouvé par ' + socket.name });	
+			
+		//On fais afficher un gif pour la victoire
+		io.sockets.emit('new_message',{name:'Egg, Mister Egg',message:'<span class="easter">good joob</span>'});
+
+	});
 });
 
 // Lance le serveur sur le port 8080 (http://localhost:8080)
