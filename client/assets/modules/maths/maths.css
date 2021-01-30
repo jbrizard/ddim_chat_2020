@@ -1,0 +1,15 @@
+.BotJeSaisTout{
+    color: #000;
+
+}
+
+/*.BotJeSaisTout::before{
+    content: "";
+    background-image: url(./calculator.png);
+    background-repeat: no-repeat;
+    z-index: 9999;
+    position: absolute;
+    height: 27px;
+    width: 19px;
+    transform: translate(-120%, -25%);
+}*/
