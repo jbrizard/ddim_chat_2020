@@ -48,7 +48,8 @@ function receiveMessage(data)
 	// Remplace les balises de formatage
 	data.message = replaceStyling(data.message);
 	
-	//switchM(data.message);
+	// Plugin Switch Mode
+	handleSwitchMode(data.message);
 
 	// Ajoute le message au chat
 	$('#chat #messages').append(
