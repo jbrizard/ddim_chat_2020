@@ -77,7 +77,8 @@ function sendMessage(io, message)
         io.sockets.emit('new_message',
         {
             name:'BG',
-            message: message
+            message: message,
+            avatar:'/modules/joke/jokes.png'
         });
     }, 700);
 }
