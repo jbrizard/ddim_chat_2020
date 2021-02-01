@@ -16,7 +16,8 @@ function handleEasterGif(io, message)
 		io.sockets.emit('new_message',
 		{
 			name: '(-',
-			message:'<img class="ok" height="100px" width="100px" src="https://media.giphy.com/media/5YngTgT41LkX6MgOnY/giphy.gif" />'
+			message:'<img class="ok" height="100px" width="100px" src="https://media.giphy.com/media/5YngTgT41LkX6MgOnY/giphy.gif" />',
+			avatar:'/modules/easter/egg.png'
 		});
 	}
 }

@@ -180,10 +180,10 @@ io.sockets.on('connection', function(socket)
 	socket.on('easter_end', function()
 	{
 		// On transmet le message à tout les utilisateurs
-		io.sockets.emit('new_message', {name:'Egg, Mister Egg', message:'easter egg trouvé par ' + socket.name });	
+		io.sockets.emit('new_message', {name:'Egg, Mister Egg', message:'easter egg trouvé par ' + socket.name, avatar:'/modules/easter/egg.png'});	
 			
 		//On fais afficher un gif pour la victoire
-		io.sockets.emit('new_message',{name:'Egg, Mister Egg',message:'<span class="easter">good joob</span>'});
+		io.sockets.emit('new_message',{name:'Egg, Mister Egg', message:'<span class="easter">good joob</span>', avatar:'/modules/easter/egg.png'});
 
 	});
 });

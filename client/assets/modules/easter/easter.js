@@ -59,18 +59,18 @@ function checkEasterPosition(evt)
         
     }
     else if (distance < 100)
-    receiveMessage({name: 'Easter', message:'brulant'});
+    receiveMessage({name: 'Easter', message:'brulant', avatar:'/modules/easter/egg.png'});
 
     else if (distance < 200)
-    receiveMessage({name: 'Easter', message:'chaud'});
+    receiveMessage({name: 'Easter', message:'chaud', avatar:'/modules/easter/egg.png'});
 
     else if (distance < 300)
-     receiveMessage({name: 'Easter', message:'ca chauffe'});
+     receiveMessage({name: 'Easter', message:'ca chauffe', avatar:'/modules/easter/egg.png'});
 
     else if (distance < 400)
-    receiveMessage({name: 'Easter', message:'froid'});
+    receiveMessage({name: 'Easter', message:'froid', avatar:'/modules/easter/egg.png'});
 
     else if (distance < 1600)
-    receiveMessage({name: 'Easter', message:'glacial'});
+    receiveMessage({name: 'Easter', message:'glacial', avatar:'/modules/easter/egg.png'});
 
 }

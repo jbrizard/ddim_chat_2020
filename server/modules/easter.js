@@ -13,17 +13,18 @@ function handleEaster(io, message)
     // Passe le message en minuscules (recherche insensible à la casse)
     message = message.toLowerCase();
         
-    // Est-ce qu'il contient une référence à EAster ?
+    // Est-ce qu'il contient une référence à Easter ?
     if (message.includes('!easter'))
     {
-        // Si oui, envoie la réponse de Daffy...
+        // Si oui, envoie la réponse de Easter...
         io.sockets.emit('new_message',
         {
             name:'Easter!!',
-            message:'Trouvez l\'easter egg le plus vite possible !'
+            message:'Trouvez l\'easter egg le plus vite possible !',
+            avatar:'/modules/easter/egg.png'
         });
         
-        // Si oui, envoie la réponse de Daffy...
+        // Si oui, envoie la réponse de Easter...
         io.sockets.emit('easter_pos',
         {
             x: Math.random(),
