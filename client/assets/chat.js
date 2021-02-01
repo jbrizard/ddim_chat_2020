@@ -45,6 +45,10 @@ function sendMessage() {
  */
 function receiveMessage(data)
 {
+	// Suis-je l'auteur du message?
+	var isMe = typeof(data.isMe) != 'undefined' ? data.isMe : false;
+	log(isMe);
+	
 	// Remplace les balises de formatage
 	data.message = replaceStyling(data.message);
 	

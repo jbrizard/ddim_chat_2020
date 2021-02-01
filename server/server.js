@@ -113,7 +113,8 @@ io.sockets.on('connection', function(socket)
 		message = emoji.handleEmoji(io, message);
 		
 		// Transmet le message à tous les utilisateurs (broadcast)
-		io.sockets.emit('new_message', {name:socket.name, message:message, avatar:socket.avatar});
+		socket.emit('new_message', {name:socket.name, message:message, avatar:socket.avatar, isMe:true });
+		socket.broadcast.emit('new_message', {name:socket.name, message:message, avatar:socket.avatar, isMe:false });
 		
 		// Transmet le message au module Daffy (on lui passe aussi l'objet "io" pour qu'il puisse envoyer des messages)
 		daffy.handleDaffy(io, message);
