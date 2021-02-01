@@ -47,7 +47,6 @@ function receiveMessage(data)
 {
 	// Suis-je l'auteur du message?
 	var isMe = typeof(data.isMe) != 'undefined' ? data.isMe : false;
-	log(isMe);
 	
 	// Remplace les balises de formatage
 	data.message = replaceStyling(data.message);
@@ -57,7 +56,7 @@ function receiveMessage(data)
 
 	// Ajoute le message au chat
 	$('#chat #messages').append(
-		'<div class="message">'
+		'<div class="message ' + (isMe ? 'is-me' : '')  + '">'
 			+ '<img class="avatar" src="'+data.avatar+'"></img>'
 			+ '<span class="user">' + data.name  + '</span> ' 
 			+ data.message 
