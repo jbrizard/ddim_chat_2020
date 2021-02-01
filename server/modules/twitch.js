@@ -116,7 +116,8 @@ function onChannelResult(error, response, body, io, socket, statut)
 				io.sockets.emit('twitch',
 				{
 					name: socket.name,
-					channelName: info.channels[0].name
+					channelName: info.channels[0].name,
+					avatar : 'modules/twitch/avatar.png'
 				});
 			}
 		}
@@ -125,7 +126,8 @@ function onChannelResult(error, response, body, io, socket, statut)
 			io.sockets.emit('erreurTwitch',
 			{
 				name: socket.name,
-				messageError: "L'utilisateur n'existe pas !"
+				messageError: "L'utilisateur n'existe pas !",
+				avatar : 'modules/twitch/avatar.png'
 			});
 		}	
 	}
@@ -135,7 +137,8 @@ function onChannelResult(error, response, body, io, socket, statut)
 		io.sockets.emit('erreurTwitch',
 		{
 			name: socket.name,
-			messageError: "Une erreur est survenue lors de la requête"
+			messageError: "Une erreur est survenue lors de la requête",
+			avatar : 'modules/twitch/avatar.png'
 		});
 	}
 }
@@ -187,7 +190,8 @@ function onReplayResult(error, response, body, io, socket)
 				// Envoi l'id du channel , le nom de l'utilisateur et l'id de la video
 				channelID: channelID,
 				name: socket.name,
-				idVideo : infoVideos
+				idVideo : infoVideos,
+				avatar : 'modules/twitch/avatar.png'
 			});
 		}
 		// Si non, cela veut dire que l'utilisateur n'a pas de replay et on envoi un message d'erreur
@@ -198,7 +202,8 @@ function onReplayResult(error, response, body, io, socket)
 			{
 				// Envoi le nom de la personne ayant fait la requete ainsi qu'un message d'erreur
 				name: socket.name,
-				messageError: "L'utilisateur n'a aucun replay"
+				messageError: "L'utilisateur n'a aucun replay",
+				avatar : 'modules/twitch/avatar.png'
 			});
 		}
 		
@@ -210,7 +215,8 @@ function onReplayResult(error, response, body, io, socket)
 		{
 			// Envoi le nom de la personne ayant fait la requete ainsi qu'un message d'erreur
 			name: socket.name,
-			messageError: "Une erreur est survenue lors de la requête"
+			messageError: "Une erreur est survenue lors de la requête",
+			avatar : 'modules/twitch/avatar.png'
 		});
 	}
 }

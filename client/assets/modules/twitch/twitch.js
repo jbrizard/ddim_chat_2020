@@ -15,7 +15,7 @@ function twitch(data)
 	// On ajoute le message contenant contenant le lien du live ainsi que la div qui sera liée à l'embed
 	$('#chat #messages').append(
 		'<div class="message">'
-            + '<span class="user">' + data.name  + '</span> ' 
+            + '<img class="avatar" src="'+data.avatar+'"><span class="user">' + data.name  + '</span> ' 
             +'<a href="https://twitch.tv/'+data.channelName+'" target="_blank"s>https://twitch.tv/'+data.channelName+'</a>'
 			+ '<div id="twitch-embed-'+data.channelName+"-"+random+'"> </div>'
 	     + '</div>'
@@ -54,7 +54,7 @@ function replay(data)
 	// On ajoute le message contenant contenant le lien du replay ainsi que la div qui sera liée à l'embed
 	$('#chat #messages').append(
 		'<div class="message">'
-            + '<span class="user">' + data.name  + '</span> ' 
+            + '<img class="avatar" src="'+data.avatar+'"><span class="user">' + data.name  + '</span> ' 
             +'<a href="https://twitch.tv/videos/'+data.idVideo+'" target="_blank">https://twitch.tv/videos/'+data.idVideo+'</a>'
 			+ '<div id="twitch-embed-'+data.idVideo+"-"+random+'"> </div>'
 	     + '</div>'
@@ -81,7 +81,7 @@ function twitchError(data)
 	// On ajoute un message en fonction de l'erreur dans le chat 
 	$('#chat #messages').append(
 		'<div class="message">'
-			+ '<span class="user">Twitch Bot </span>' 
+			+ '<img class="avatar" src="'+data.avatar+'"><span class="user">Twitch Bot </span>' 
 			+'<span>'+data.messageError+'</span>'
 	     + '</div>'
 	);

@@ -64,7 +64,8 @@ function sendMessage(fileName, io, socket, fileType, fileRandom)
         io.sockets.emit('new_message',
 		{
 			name: socket.name,
-			message:'<img src="/modules/upload/files/'+fileRandom+'-'+fileName+'"/>'
+			message:'<img src="/modules/upload/files/'+fileRandom+'-'+fileName+'"/>',
+			avatar : 'modules/upload/avatar.jpg'
 		});
     }
     else
@@ -73,7 +74,9 @@ function sendMessage(fileName, io, socket, fileType, fileRandom)
         io.sockets.emit('new_message',
 		{
 			name: socket.name,
-			message:'<a href="/modules/upload/files/'+fileRandom+'-'+fileName+'">'+fileName+'</a>'
+            message:'<a href="/modules/upload/files/'+fileRandom+'-'+fileName+'">'+fileName+'</a>',
+			avatar : 'modules/upload/avatar.jpg'
+            
 		});
     }
 		
