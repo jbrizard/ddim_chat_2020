@@ -90,6 +90,7 @@ function sendMessage(message, io)
 	// On envoie la réponse de sentiment
 	io.sockets.emit('new_message', {
 		name: 'Sentiment',
-		message: message
+		message: message,
+		avatar: 'modules/sentiment/avatar.png'
 	});
 }
