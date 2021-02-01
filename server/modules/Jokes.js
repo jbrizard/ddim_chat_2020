@@ -30,7 +30,7 @@ var tabjokes = [
  */
 function initJoke(io)
 {
-    setInterval(function(){ sendJoke(io); }, 60000);
+    setInterval(function(){ sendJoke(io); }, 120000);
 }
 
 /**
