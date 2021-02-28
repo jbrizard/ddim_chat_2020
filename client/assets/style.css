@@ -1,92 +1,242 @@
-﻿html, body {
-	height:100%;
-	margin:0;
-	padding:0;
-	overflow:hidden;
-}
+﻿html,
 body {
-	background:#888;
-	color:#555;
-	text-align:center;
-	font-family:Arial;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
 }
+
+img,
+iframe {
+	max-width: 100%;
+}
+
+body {
+	background: #424242;
+	color: black;
+	font-family: Arial;
+}
+
 h1 {
-	color:#fff;
-	text-transform:uppercase;
-	text-shadow:0px 0px 20px rgba(0, 0, 0, 0.4);
+	color: #fff;
+	text-transform: uppercase;
+	text-align: center;
 }
+
+#boutonsTexte {
+	display: block;
+	padding-bottom: 5px;
+	padding-right: 5px;
+	position: absolute;
+}
+
 #chat {
-	margin:0 auto;
-	width:70%;
-	max-width:500px;
-	height: calc(100% - 80px - 40px - 60px); /* 80px = marge haute, 40px = marge basse, 60px = padding vertical */
-	padding:30px;
-	background:#fff;
-	border-radius:14px;
-	font-size:0;
-	box-shadow:0px 0px 20px 0 rgba(0, 0, 0, 0.3);
+	height: 100%;
+	display: grid;
+	grid-template-columns: 25% 50% 25%;
+	grid-template-rows: 100%;
 }
-#messages {
-	height:calc(100% - 15px - 60px); /* 15px = padding-top, 60px = formulaire en dessous  */
-	padding-top:15px;
-	width:100%;
-	overflow-y:scroll;
-	margin-bottom:20px;
-	font-size:12px;
-	border-top-left-radius:8px;
-	border-bottom-left-radius:8px;
-	border-right: solid 1px #eaeaea;
-    border-bottom: solid 2px #DDD;
-	background:#eee;
+
+.left, .right {
+	background: #715d5d;
+}
+
+.footer-left {
+    height: 5vh;
+    background: #424242;
+    position: absolute;
+    bottom: 0;
+	left: 0;
+	width: 25%;
+}
+
+.footer-right {
+    height: 5vh;
+    background: #424242;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+	width: 25%;
+}
+
+.center {
+	width: 100%;
+	height: calc(100% - 6vh - 60px);
+	max-height: calc(100% - 6vh - 60px);
+	/* 80px = marge haute, 40px = marge basse, 60px = padding vertical */
+	background: #c68e8e;
+	font-size: 0;
+}
+
+.center>#messages {
+	height: calc(100% - 15px - 60px);
+	max-height: calc(100% - 15px - 60px);
+	/* 15px = padding-top, 60px = formulaire en dessous  */
+	padding-top: 15px;
+	width: 100%;
+	max-width: 100%;
+	overflow-y: scroll;
+	margin-bottom: 20px;
+	font-size: 12px;
 	text-align: left;
 }
-#messages .message {
-	padding:4px 20px;
+
+.toolbar {
+	background: #424242;
+	border: none;
 }
-#messages .message:nth-child(2n) {
-	background:rgba(0, 0, 0, .02);
-}
+
 #message-input {
-	display:inline-block;
-	border:solid 2px #888;
-	width:calc(100% - 144px);
-	padding:0 20px;
-	height:31px;
-	border-top-left-radius:8px;
-	border-bottom-left-radius:8px;
-	border-right:none;
-	transition:all .4s;
+	display: inline-block;
+	width: calc(100% - 144px);
+	padding: 3px 20px;
+	height: 3.2vh;
+	border-right: none;
+	transition: all .4s;
 }
+
 #send-message {
-	display:inline-block;
-	border:solid 2px #888;
-	background:0;
-	width:100px;
-	padding:8px 0;
-	text-transform:uppercase;
-	font-weight:bold;
-	color:inherit;
-	background:#888;
-	color:#fff;
-	border-top-right-radius:8px;
-	border-bottom-right-radius:8px;
-	cursor:pointer;
-	transition:all .4s;
+	display: inline-block;
+    border: 3px solid #424242;
+    border-right: 0;
+	width: 100px;
+	padding: 8px 0;
+	text-transform: uppercase;
+	font-weight: bold;
+	background: #ffaeae;
+	color: #fff;
+	cursor: pointer;
+	transition: all .4s;
 }
+
 #message-input:focus {
-	outline:none;
-	border-color:#666;
+	outline: none;
 }
+
 #send-message:focus {
-	outline:none;
+	outline: none;
 }
-#message-input:focus + #send-message {
-	border-color:#666;
-	background:#777;
+
+#message-input:focus+#send-message {
+	background: #ffaeae;
 }
+
 #messages .message .user {
-	font-weight:bold;
+	font-weight: bold;
 }
+
+.message {
+	margin: 5px 0;
+}
+
+.content {
+	background: #b0ffea;
+	border-radius: 2px;
+	padding: 5px;
+	margin: 2px;
+}
+
 #messages .message .user:after {
-	content:': ';
+	content: ': ';
+}
+
+#features {
+	background: #ffaeae;
+	border-radius: 4px;
+	padding: 20px 15px;
+	text-align: left;
+	font-size: 12px;
+	width: 80%;
+	margin: 18% auto;
+}
+
+#features h2 {
+	margin-top: 0;
+}
+
+#features ul {
+	margin: 0;
+	margin-left: 20px;
+	padding: 0;
+}
+
+#features li {
+	margin-bottom: 15px;
+}
+
+#features li:last-child {
+	margin-bottom: 0;
+}
+
+
+#messages .message .bold {
+	font-weight: bold;
+}
+
+.column {
+	float: left;
+	/*width: 0%;*/
+	margin-left: 8px;
+	margin-right: auto;
+}
+
+.italic {
+	font-style: italic;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.underline {
+	text-decoration: underline;
+}
+
+.on {
+	background-color: gray;
+}
+
+.list-participants {
+	margin-left: 5px;
+	position: fixed;
+	width: 10%;
+	height: auto;
+	border-bottom-right-radius: 12px;
+	border-bottom-left-radius: 12px;
+	text-align: left;
+	font-size: 12px;
+	padding: 20px 15px;
+	color: white;
+}
+
+.list-participants h2 {
+	text-align: center;
+}
+
+.list-participants img {
+	width: 30px;
+	margin-right: 5px;
+}
+
+.list-participants li {
+	font-size: 16px;
+}
+
+#troisbouton {
+	margin-top: 5px;
+}
+
+#italic {
+	font-style: italic;
+	font-family: 'Times New Roman', Times, serif;
+}
+
+#bold {
+	font-weight: bold;
+	font-family: 'Times New Roman', Times, serif;
+}
+
+#underline {
+	text-decoration: underline;
+	font-family: 'Times New Roman', Times, serif;
 }

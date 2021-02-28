@@ -7,24 +7,162 @@
 		<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 		<script src="/socket.io/socket.io.js"></script>	<!-- fichier injecté par NodeJS -->
 		
-		<link rel="stylesheet" href="style.css" />
-		<link rel="stylesheet" href="/modules/daffy/daffy.css" />
+		<link rel="stylesheet" href="style.css"/>
+		<link rel="stylesheet" href="/modules/daffy/daffy.css"/>
+		<link rel="stylesheet" href="/modules/donald/donald.css"/>
+		<link rel="stylesheet" href="/modules/barrelroll/barrelroll.css"/>
+		<link rel="stylesheet" href="/modules/emoji/emoji.css">
+		<link rel="stylesheet" href="/modules/upload/upload.css" />
+		<link rel="stylesheet" href="/modules/meteo/meteo.css" />
+		<link rel="stylesheet" href="/modules/quizz/quizz.css" />
 		<link rel="stylesheet" href="/modules/wiki/wiki.css" />
+		<link rel="stylesheet" href="/modules/basket/basket.css" />
+		<link rel="stylesheet" href="/modules/painter/painter.css" />
+		<link rel="stylesheet" href="/modules/avatar/avatar.css"/>
+		<!--<link rel="stylesheet" href="/modules/styling/styling.css" />-->
+		<link rel="stylesheet" href="/modules/news/news.css" />
+		<link rel="stylesheet" href="/modules/giphy/giphy.css"/>
+		<link rel="stylesheet" href="/modules/maths/maths.css"/>
+		<link rel="stylesheet" href="/modules/easter/easter.css" />
 	</head>
 	
 	<body>
-		<h1>Le Chat !</h1>
+		<h1>DDIM CHAT</h1>
+		
+		<!-- module basket -->
+		<div id="basket">
+			<div id="others-mouse-pos"></div>
+		
+			<div class="ball"></div>
+			
+			<div id="basket-scores">
+				<div id="current-player"></div>
+				<div id="stats">
+					<strong>Meilleur joueur : <span class="best-player">???</span></strong>
+				</div>
+			</div>
+
+			<audio id="basket-bounce" src="modules/basket/bounce.mp3" autostart="0" />
+		</div>
+		<!-- fin module basket -->
 		
 		<div id="chat">
-			<div id="messages">
+
+			<section class="left">
+
+				<div class="avatars-input">
+					<input type="button" id="avatar-input" value="Changez votre avatar"/>
+					<div class="avatars">
+						<div class="avatars-inside"></div>
+					</div>
+				</div>
+
+				<!-- module participants -->
+				<div class="list-participants">
+					<h2>Participants en ligne :</h2>
+					<div id="participants-online">
+					</div>
+				</div>
+				<!-- fin module participants -->
 				
-			</div>
+				<div class="footer-left">
+				</div>
+
+			</section>
+
+			<section class="center">
+
+				<div id="messages">
+				</div>
+
+				<div class="emojis-input">
+					<div id="boutonsTexte">
+						<input type="button" id="italic" value="I" />
+						<input type="button" id="bold" value="B" />
+						<input type="button" id="underline" value="U" />
+					</div>
+					
+					<div id="boutonsEmojis">
+						<input type="button"  id="emoji-input-faces" value="😀"/>
+						<input type="button"  id="emoji-input-gestures" value="👍"/>
+						<input type="button"  id="emoji-input-love" value="❤️"/>
+						<input type="button"  id="emoji-input-animals" value="🐱"/>
+						<input type="button"  id="emoji-input-plants" value="🍀"/>
+					</div>
+					
+
+					<div class="emojis">
+						<div class="emojis-inside"></div>
+					</div>
+				</div>
+
+				<div class="toolbar">
+					<div id="upload-files">
+						<input type="file" id="upload" name="upload" style="display:none" />
+						<input type="text" id="selectedfile" style="display:none" />
+						<input type="button" value="+" id="button-upload" onclick="getFile()" />
+					</div>
+					<input type="text" id="message-input" focus/>
+					<input type="button" id="send-message" value="Envoyer" />
+				</div>
+
+			</section>
+
+			<section class="right">
 				
-			<input type="text" id="message-input" />
+				<div id="features">
+					<h2>Plugins</h2>
+					<ul>
+						<li><strong>Emojis :</strong> exprime tes sentiments, déclare ta flamme...</li>
+						<li><strong>Bot BG :</strong> demande lui une "joke", il se fera un plaisir de te faire "rire"...</li>
+						<li><strong>Giphy :</strong> anime tes messages avec "gif MOTCLE"</li>
+						<li><strong>Upload :</strong> partage tes photos de vacances... ou tes supports de cours</li>
+						<li><strong>Styling :</strong> donne du relief à tes messages</li>
+						<li><strong>Jukebox :</strong> met du bon son avec "jukebox MOTCLE"</li>
+						<li><strong>Météo :</strong> "!meteo VILLE" te dit comme il fait (pas) beau chez toi...</li>
+						<li><strong>Wiki :</strong> apprends des trucs avec "wiki MOTCLE"</li>
+						<li><strong>Basket :</strong> bat le record de touche sans que le ballon touche le sol</li>
+						<li><strong>Painter :</strong> montre nous ta créativité...</li>
+						<li><strong>Traduction :</strong> speak another language avec "!translate"</li>
+						<li><strong>Quizz :</strong> joue avec tes potes au "!Quizz"</li>
+						<li><strong>Twitch :</strong> inspire toi des meilleurs avec "!twitch CHAINE" ou "!replay CHAINE"</li>
+						<li><strong>News :</strong> tiens toi au courant avec "!une", "!uneAnglais", "!news MOTCLE"</li>
+						<li><strong>Maths :</strong> repose tes neurones avec "calcul CALCUL" (il fait pas que du calcul...)</li>
+						<li><strong>Easter Moji :</strong> évite certains emojis ou ça va swinger... !</li>
+						<li><strong>Mister Egg :</strong> envoie du "!easter" et trouve l'oeuf caché sur la page (monte le son avant)...</li>
+					</ul>
+				</div>
+				
+				<div class="footer-right">
+				</div>
+
+			</section>
 			
-			<input type="button" id="send-message" value="Envoyer" />
 		</div>
 		
+		<div id="brushes">
+			<div class="brush black" data-color="black"></div>
+			<div class="brush red" data-color="red"></div>
+			<div class="brush yellow" data-color="yellow"></div>
+			<div class="nobrush"></div>
+		</div>
+		
+		<canvas id="paint"></canvas>
+		
 		<script type="text/javascript" src="chat.js"></script>
+		<script type="text/javascript" src="/modules/barrelroll/barrelroll.js"></script>
+		<script type="text/javascript" src="/modules/emoji/emoji.js"></script>
+		<script type="text/javascript" src="modules/upload/upload.js"></script>
+		<script type="text/javascript" src="/modules/styling/styling.js"></script>
+		<script type="text/javascript" src="https://embed.twitch.tv/embed/v1.js"></script>
+		<script type="text/javascript" src="modules/twitch/twitch.js"></script>
+		<script type="text/javascript" src="modules/basket/basket.js"></script>
+		<script type="text/javascript" src="modules/painter/painter.js"></script>
+		<script type="text/javascript" src="/modules/avatar/avatar.js"></script>
+		<script type="text/javascript" src="/modules/styling/styling.js"></script>
+		<script type="text/javascript" src="/modules/switchmode/switchmode.js"></script>
+		<script type="text/javascript" src="/modules/quizz/quizz.js"></script>
+		<script type="text/javascript" src="/modules/traduction/traduction.js"></script>
+		<script type="text/javascript" src="/modules/easter/easter.js"></script>
 	</body>
 </html>
